@@ -1,0 +1,138 @@
+internet - (WAN - worldwide area network) global computer network (billlions of device connected)
+	Wireline : copper/fiber - physical wireline / cable
+	Wireless : satelites (NOT wifi)
+	
+	Home : (modem/router) physically connected to the wireline n/w
+		TV, Laptop, phone,refrigeerator, thermostat, vaccum
+		wifi - small distance(meters) wireless network
+			connected to your modem/router
+	Roaming : data plan on mobile
+	
+intranet - corporate/school computer network. (thousands of devices connected)
+	unlimited communication within this walled garden.
+	outside communication with internet more secure/scrutinized
+
+LAN (Local area network )- Home computer network. (less than hundred devices connected)
+	
+
+ip - unique identifier of every device that is connected to internet
+
+	8 billion = < 1 device ( phone, laptop, tablet, smart watch )
+	100 billions connected to internet - each should have unique ip
+		IPv4 = 0-255 . 0-255 . 0-255 . 0-255
+			4 octet/ subnet
+				123.25.67.234
+				4.2 billion unique IPv4 address = 256 X 256 X 256 X 256
+		IPv6	= 8 sequence (pair of 4 characters )
+			xxxx : xxxx : xxxx : xxxx : xxxx : xxxx : xxxx : xxxx 
+			0-9 a b  c d e f - hexadecimal
+			95ae : xxxx : xxxx : xxxx : xxxx : xxxx : xxxx : xxxx 
+			(16^4 ) ^8
+			trillions of trillions of IPv6 addresses
+
+port/socket - unique identifier of internet softwares running on a machine
+	port - allows entrance into a device
+		Flight - airport port of entry
+		ship - docker port of entry
+	Individual port is assigned to each internet software running on the device
+	0-65535
+
+dhcp  - provides unique ip address
+dns - domain name server
+router - pathway between 2 end point
+load balancer - 
+
+ipconfig - show my lan ip address
+netstat -a - show all ports open
+ping - remote machine is reachable and response time (round trip time)
+telnet - website software is open on remote aws machine
+tracert - find delay in the network (trace route)
+
+
+
+Communication - IP and port
+
+http://www.google.com/
+	machine contact DNS and get ip for www.google.com - 1.2.3.4
+1.2.3.4 80
+
+DNS - Web ip address contact (just like phone contact)
+	DNS - translation from domain name(www.google.com) to the IP address
+www.google.com 1.2.3.4
+www.facebook.com 2.3.4.5
+www.amazon.com 4.5.6.7
+
+
+Contact name - contact phone
+john - 1231231231
+jane - 2342342342
+mike - 3453453453
+
+call john
+
+source
+	1 hop - 10 mile on xyz road
+	1 hop - take left 5 mile on abc road
+	1 hop - take right 20 mile on pqr road ( slight delay )
+	1 hop - take left 5 mile on www road
+destination
+
+
+
+
+************* xml *******************
+john doe asdad asda asdsad asd asda 123234 adasd 23432423423
+meta-data.. infor about infor
+Strictly typed language
+represents Complex data
+Validation = Mandatory info in this file/ data type validation
+	doc type
+	xsd
+elements = <>
+	<Company>
+		<person age="12" >
+			<firstName>john</firstName> 
+			<lastname>doe</lastname> 
+			<address>
+				<street>asdasda </street>
+				<city>asdsad a312</city> 
+				<zip>123</zip>
+			</address>
+		</person>
+		<person age="12" >
+			<firstName>jane</firstName> 
+			<lastname>doe</lastname> 
+			<address>
+				<street>dasd </street>
+				<city>qwe a312</city> 
+				<zip>234</zip>
+			</address>
+		</person>
+	</Company>
+	1) opened element must be closed (open and close tags / )
+	2) no space in name of element
+	3) nested elements
+		root - first eleemnt in xml file
+		parent  - top element in nested xml format
+		child - bottom element in nested xml format
+		sibling - adjacent elements inside parent element
+attributes = indivisible info, key value pair
+
+
+
+root eleemnt
+parent/child/sibling eleemnt
+element value
+attributes
+
+
+
+
+********* html *******
+Browser - 
+	communicates over http on the internet. (sends request to  AWS machine and receive html code as response)
+	Convert html code into Graphical and textual display on the screen
+	
+	Text - Html code 
+	Grapics - CSS programs 
+	layout - CSS programs
