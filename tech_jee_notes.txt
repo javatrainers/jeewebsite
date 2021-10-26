@@ -136,3 +136,17 @@ Browser -
 	Text - Html code 
 	Grapics - CSS programs 
 	layout - CSS programs
+************* event listener **********
+
+events : activity triggered by customer actions
+	standard inputs : 
+		keyboard - type, press, release
+		mouse - move mouse, click, double click
+events listeners : 
+	css : 
+		hover - mouse positioned over certain html eleemnts
+		active - on click of focus of certain html elements
+
+
+margin and padding- spacing between html elements
+
