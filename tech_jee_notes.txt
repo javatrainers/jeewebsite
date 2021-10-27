@@ -150,3 +150,43 @@ events listeners :
 
 margin and padding- spacing between html elements
 
+********** javascript **********
+JAVA VERSUS JAVASCRIPT OBJECT
+
+Javascript Object
+var student={
+		name : "john",
+		age : 10,
+		grade : 2,
+		learn : function(  ){
+			console.log("attending class");
+		}
+		
+	};
+console.log(student.name);
+student.learn();
+	
+Java Object
+public class student{
+	String name = "john";
+	int age=10;
+	int grade =2;
+	public void learn(){
+		System.out.println("attending class");
+	}
+}
+
+onkeypress
+
+
+
+********* CONTROL PASS FROM HTML TO JAVASCRIPT ***********
+Using event listeners in html field you can call javascript functions
+
+
+********* HOW TO ACCESS HTML VALUES FROM JAVASCRIPT *******
+document.getElementById(" id attribute in target html field") . value
+
+
+
+

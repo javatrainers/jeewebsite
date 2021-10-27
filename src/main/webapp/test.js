@@ -1,8 +1,20 @@
+function validateUserid(){
+	var userTyped=document.getElementById( "user").value ;
+	if( userTyped.length < 6 || userTyped.length > 30 ){
+		alert("userid must be between 6 and 30 characters long");
+		document.getElementById( "user").style="background:red";
+	}
+	else
+	{
+		document.getElementById( "user").style="background:white";
+	}
+}
+
 
 function validatelogin(){
 	// collect whatever customer typed in the login section
 	
-	var customerEnteredUid=document.getElementById("uid").value;
+	var customerEnteredUid=document.getElementById("user").value;
 	//var customerEnteredUid=$("#uid").val();
 	
 	var customerEnteredpwd=document.getElementById("pwd").value;
@@ -12,7 +24,7 @@ function validatelogin(){
 	if(customerEnteredUid == ""  )
 	{
 		//$("#uid").val("please enter");
-		document.getElementById("uid").style.background="red";
+		document.getElementById("user").style.background="red";
 		//$("#uid").css("background","purple");
 		alert(" userid is mandatory");
 		return false;
@@ -127,12 +139,12 @@ function add( a, b){
 	console.log(email);
 	var arr=email.split("@");
 	console.log(arr);
-	
+/*	
 	if(email.indexOf("@")  == -1 )
 		alert("invalid email id"); // popup window
 	else
 		alert("valid email id");
-
+*/
 	
 }
 
@@ -238,3 +250,6 @@ function loginAttemptCheck(){
 }
 
 */
+
+
+

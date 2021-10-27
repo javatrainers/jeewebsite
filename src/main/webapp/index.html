@@ -31,7 +31,7 @@
 					</div>
 					
 					<div id="display">
-						<img src="images/test.png" height="100%" width="100%">
+						<img onclick="alert('clicked image');"  src="images/test.png" height="100%" width="100%">
 					</div>
 					
 				</div>
@@ -39,23 +39,20 @@
 			<div id="bodybottom">
 					<div id="bodybottomleft">
 						<form action="/login">
-						userid <input type ="text"  id="userid" name="userid" />
-						password<input type ="password"  id="password" name="password"/>
-						<input type ="submit" value="login"/>
-						
+						 
 						
 						<table>						
 							<tr>					
 								<td>	userid	</td>		
-								<td>	<input type="text"></input>			</td>
+								<td>	<input onblur="validateUserid()" type="text" id="user" name="user"></input>			</td>
 							</tr>					
 							<tr>					
 								<td>	password	</td>		
-								<td>	<input type="password"></input>			</td>
+								<td>	<input type="password" id="pwd" name="pwd"></input>			</td>
 							</tr>					
 							<tr>					
 								<td>		</td>		
-								<td>	<input type="submit" value="login"></input>			</td>
+								<td>	<input onclick="return validatelogin()" type="submit" value="login"></input>			</td>
 							</tr>					
 						</table>						
 												
