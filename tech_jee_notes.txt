@@ -190,3 +190,38 @@ document.getElementById(" id attribute in target html field") . value
 
 
 
+
+
+
+****************** jquery *****************
+html + javascript - tightly coupled
+	event listeners in html code
+	onclick, onblur = invoke javascript functions
+	
+	cons : developers working on HTML and javascript
+	
+html + jquery  - loosely coupled
+	no javascript code written in HTML program
+	decoupled - html and javascript
+	
+	
+<div id="parent">
+	<div id="son"> hi hello </div>
+<div>
+
+$("#parent").html(); = html elements
+$("#son").text(); =  hi hello (not elements)
+$("#user").val(); = access customer typed
+					value
+					
+	overloaded
+	no parameter - READING values
+	val()
+	with parameter - WRITING values
+	val("hi");
+	
+	
+	
+document.getElementById( "user")
+$("#user")
+	

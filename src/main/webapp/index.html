@@ -1,9 +1,11 @@
 <html lang="en">
 	<link href="test.css" rel="stylesheet" type="text/css"></link>  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="test.js"></script> 	
+	
 <body>	
 	<div id="webpage" onclick="">
-		<div class="header" onclick="">
+		<div class="header"  >
 			<ul onclick="">
 				<li>apple</li>
 				<li>banana</li>
@@ -23,7 +25,7 @@
 				<div id="filters"></div>
 				<div id="product">
 					<div id="display">
-						<img src="images/test.png" height="100%" width="100%">
+						<img id="product1" src="images/test.png" height="100%" width="100%">
 					</div>
 					
 					<div id="display">
@@ -48,11 +50,11 @@
 							</tr>					
 							<tr>					
 								<td>	password	</td>		
-								<td>	<input type="password" id="pwd" name="pwd"></input>			</td>
+								<td>	<input type="password" class="pwd" name="pwd"></input>			</td>
 							</tr>					
 							<tr>					
 								<td>		</td>		
-								<td>	<input onclick="return validatelogin()" type="submit" value="login"></input>			</td>
+								<td>	<input type="submit" value="login" id="loginsubmit" ></input>			</td>
 							</tr>					
 						</table>						
 												

@@ -11,21 +11,42 @@ function validateUserid(){
 }
 
 
+$(document).ready(function() {
+
+	$("#loginsubmit").click(validatelogin);	
+	$(".header").mouseenter(disappearProduct);
+	$(".header").mouseleave(appearProduct);
+	$("#user").blur( validateUserid );
+	
+});
+function disappearProduct(){
+	 $("#product1").fadeOut( 10000 ); 
+	// $("#product1").show(); 
+}
+
+function appearProduct(){
+	$("#product1").fadeIn( 10000 ); 
+	//$("#product1").slideDown( 10000 ); 
+	// $("#product1").show(); 
+}
+
 function validatelogin(){
 	// collect whatever customer typed in the login section
 	
-	var customerEnteredUid=document.getElementById("user").value;
-	//var customerEnteredUid=$("#uid").val();
+	//var customerEnteredUid=document.getElementById("user").value;
+	var customerEnteredUid=$("#user").val(  );
 	
-	var customerEnteredpwd=document.getElementById("pwd").value;
-	//var customerEnteredpwd=$("#pwd").val();
+	//var customerEnteredpwd=document.getElementById("pwd").value;
+	var customerEnteredpwd=$(".pwd").val();
 	
 	// verify all login info is entered correctly
 	if(customerEnteredUid == ""  )
 	{
-		//$("#uid").val("please enter");
-		document.getElementById("user").style.background="red";
-		//$("#uid").css("background","purple");
+		$("#user").val("please enter");
+		//document.getElementById("user").style.background="red";
+		$("#user").css("background","red");
+		$("#user").css("color","white");
+		
 		alert(" userid is mandatory");
 		return false;
 	}
