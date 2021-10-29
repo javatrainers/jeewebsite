@@ -33,20 +33,20 @@
 					</div>
 					
 					<div id="display">
-						<img onclick="alert('clicked image');"  src="images/test.png" height="100%" width="100%">
+						<img  id="shoe" src="images/test.png" height="100%" width="100%">
 					</div>
 					
 				</div>
 			</div>
 			<div id="bodybottom">
 					<div id="bodybottomleft">
-						<form action="/login">
+						<form action="/login" method="get">
 						 
 						
 						<table>						
 							<tr>					
 								<td>	userid	</td>		
-								<td>	<input onblur="validateUserid()" type="text" id="user" name="user"></input>			</td>
+								<td>	<input type="text" id="user" name="user"></input>			</td>
 							</tr>					
 							<tr>					
 								<td>	password	</td>		

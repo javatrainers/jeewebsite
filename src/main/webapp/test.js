@@ -17,8 +17,27 @@ $(document).ready(function() {
 	$(".header").mouseenter(disappearProduct);
 	$(".header").mouseleave(appearProduct);
 	$("#user").blur( validateUserid );
-	
+	$("#shoe").mouseenter( reportShoeInterest );
 });
+
+function reportShoeInterest(){
+	var loginAttemptCheck={
+	        url: '/shoeInterest',
+	        type: 'get',
+	        context: this,
+		    success: function (data) {
+		alert("call succeded");
+		        },
+	        error: function (data) {
+	        	alert("call failed");
+	        }
+	};
+	
+	$.ajax(  loginAttemptCheck  );
+
+
+}
+
 function disappearProduct(){
 	 $("#product1").fadeOut( 10000 ); 
 	// $("#product1").show(); 

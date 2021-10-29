@@ -225,3 +225,89 @@ $("#user").val(); = access customer typed
 document.getElementById( "user")
 $("#user")
 	
+*********************** Http ********************
+Hyper link
+HTML - Hyper Text Markup language
+
+HTTP - Hyper Text Transfer protocol
+FTP - File Transfer protocol
+SMTP - Simple Mail transfer protocol
+
+UPS/USPS/Fedex
+
+HTTP - Transporting/ courier service to move digital data over the internet
+	digital data - 
+		Text - alphabetical/numerical data
+		binary - image/ video/ audio/ executable files 
+
+Http 
+	Header - Digital data transfer informatino - source/destincation/ weight
+			content type/ additional instructions etc
+	Body- digital payload . text data or binary data such as image/video/ etc
+	
+	1 Http Transaction 
+	Request - Client program sends request.
+			Clients side technology - HTML/ JS/ Mobile app
+	Response - Server program responds
+	
+	HTTP methods
+		get - 
+		post - 
+		
+	
+**************** Data transfer / request generation from client **********
+
+	synchronous - customer voluntary submission from customer browser to server
+			clicking SUBMIT button
+			
+		BROWSER DOES ALL THIS	
+			1) Current page - domain name = http://localhost
+			2) form action - part of url = /login
+			3) Inside form element all name attributes and customer input is paired
+				user=john123&pwd=abc123
+				
+			1+2+?+3 = url 
+			http://localhost/login?user=john123&pwd=abc123
+			http://localhost/login?user=john123&pwd=abc123
+			
+			
+	http://localhost/login?user=john123&pwd=abc123
+	http = port in the website machine (80)
+	localhost = machine location (ip address of website machine)		
+	/login = alias to java program
+	
+			
+	asynchronous - automated involunatry data submission from customer browser to server
+			Event listenter / javascript / ajax
+			
+	ajax= asynchronous Java script xml
+	
+	xhr = xml http request
+	
+	
+	Jquery has a method to make ajax calls = ".ajax"
+	input to this .ajax method = javascript object
+	javscript object has = variable and methods
+		variable
+			url :  "http://localhost/login" destination where you want to transfer(mandatory)
+			type : "get/post"			method/mode of transfer
+			data :  "user=john123&pwd=abc123" payload, data/content to be transferred
+	
+			success : code executed if the asynch call is successfull
+			error : code executed if the asynch call is failure
+			
+	var loginAttemptCheck={
+	        url: '/shoeInterest',
+	        type: 'get',
+		
+	        context: this,
+		success: function (data) {
+				if your call to server succeeds.. what to do next
+		        },
+	        error: function (data) {
+	        	if your call to server fails.. what to do next
+	        }
+	};
+	
+	$.ajax(  loginAttemptCheck  );
+	
