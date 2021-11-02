@@ -17,7 +17,7 @@ $(document).ready(function() {
 	$(".header").mouseenter(disappearProduct);
 	$(".header").mouseleave(appearProduct);
 	$("#user").blur( validateUserid );
-	$("#shoe").mouseenter( reportShoeInterest );
+//	$("#shoe").mouseenter( reportShoeInterest );
 });
 
 function reportShoeInterest(){

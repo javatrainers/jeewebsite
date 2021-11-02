@@ -299,7 +299,7 @@ Http
 	var loginAttemptCheck={
 	        url: '/shoeInterest',
 	        type: 'get',
-		
+		data : "userid=john&pwd=john1!",
 	        context: this,
 		success: function (data) {
 				if your call to server succeeds.. what to do next
@@ -311,3 +311,65 @@ Http
 	
 	$.ajax(  loginAttemptCheck  );
 	
+********************** JSON ******************
+
+limitation in browser submit server call
+	Key=value pair (simple data)
+	address=adasdsad asdsad asda adssa dasdasdas
+	
+ajax server call
+	key=value
+	xml = complex data
+	<address>
+		<street>asdassad
+		<city>asdad
+		<state>sadad
+		<country>asdasd
+	</address>
+		
+JSON - transfer complex data between client and server
+	json object = (String version/representation of javascript object)
+	var jsonObj="address" : {
+		"street": "asdassad",
+		"city":true,
+		"state":123,
+		"country":"asdasd",
+		"phone": [ 123123123,2342342342   ]
+	}
+	var jsobj=JSON.parse(jsonObj);( CONVERTS JSON OBJECT INTO JAVASCRIPT OBJECT)
+	
+	javascript object
+	var jsobj=address : {
+		street: "asdassad",
+		city:true,
+		state:123,
+		country:"asdasd",
+		phone: [ 123123123,2342342342   ]
+	}
+	var jsonObj=JSON.stringify(jsobj); ( CONVERTS JAVSCRIPT OBJECT INTO JSON OBJECT)
+	
+	
+	
+*************** servlet **************
+
+Who creates servlet java object = Tomcat web server software
+Who calls doGet or doPost = doService method in the servlet
+Who gives request / response object = tomcat creates req/res object gives it to service method
+			service method gives it to doget or dopost methods
+
+Tomcat - Web server software
+
+Spring boot war file includes - html/css/js/java/tomcat programs
+
+
+Servlet
+	init - override is optional ( called only once when servlet object is created)
+		program setup or initialization code is written here
+	doGet - override is mandatory
+	doPost - override is mandatory
+	doService - override NEVER
+		every time a request comes to your servlet
+	destroy - override is optional server shuts down ( servlet object is destroyed )
+
+
+
