@@ -22,21 +22,41 @@ public class LoginServlet extends HttpServlet {
 
 	// user=john123 pwd=john123!
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		
 		String uid = req.getParameter("user");
 		String pwd = req.getParameter("pwd");
 		if(uid.equals("john123") && pwd.equals("john123!"))
-			res.sendRedirect("success.html");
-		else
-			res.sendRedirect("failure.html");
+		{	/*
+			
+			req.setAttribute("name", "john");
+			req.setAttribute("loggedin", true);
+			req.setAttribute("visit", 1);
+			req.getRequestDispatcher("success.html").forward(req, res);
+			// forwarded program will use below method to read all information
+			req.getAttribute("name" );
+			req.getAttribute("loggedin" );
+			req.getAttribute("visit" );
+			*/
+			//res.getWriter().write(" welcome to our website");
+			byte[] responseBinary="welcome".getBytes();
+			System.out.print(responseBinary);
+			
+			req.getSession().setAttribute("login",true);
+			boolean x=(boolean)req.getSession().getAttribute("login");
+			res.getOutputStream().write(  responseBinary );
+		}else
+			res.sendRedirect("https://www.google.com");
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
 		String uid = req.getParameter("user");
 		String pwd = req.getParameter("pwd");
-		if(uid.equals("john") && pwd.equals("jee"))
+		if(uid.equals("john123") && pwd.equals("john123!"))
+			// forward if next web page.. is in the same project/website
 			req.getRequestDispatcher("success.html").forward(req, res);
 		else
-			res.sendRedirect("failure.html");
+			// redriect if next web page.. is in outside this project/website
+			res.sendRedirect("https://www.google.com");
 	}
 	/*
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {

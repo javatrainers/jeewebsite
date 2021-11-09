@@ -371,5 +371,38 @@ Servlet
 		every time a request comes to your servlet
 	destroy - override is optional server shuts down ( servlet object is destroyed )
 
+Response type category
+	webpage
+		redirect
+		forward
+	text/binary : text message, image, video
+		response.getWriter - text response (Character/text stream)
+		response.getoutputstream  - image/video ( binary stream)
+	
+Http Sessions
+	HTTP is a stateless protocol 
+	State - context of converstation between 2 party
+	get Customer session = req.getSession()
+	read information stored in customer session= getAttribute()
+	write information in customer sesssion = setAttribute(name,value);
+		Session table = key / value pair.. key is String.. value can be any Object(primtive/complex objects)
+			String = 123/true/arraylist/String
+
+Request methods
+
+
+Response methods
+
+	
+status code
+	200 : request succesfull.
+	3XX : request redirect
+	4XX : request not available/unauthorized
+	5XX : server had a problem ( server program had error/exception)
+	
+	
+https://github.com/LibrePDF/OpenPDF.git
+
+
 
 
