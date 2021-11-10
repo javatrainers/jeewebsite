@@ -401,8 +401,27 @@ status code
 	5XX : server had a problem ( server program had error/exception)
 	
 	
-https://github.com/LibrePDF/OpenPDF.git
+
+**************************************** Database **************************************** 
+
+database schema
+
+SQL - Structured Query Language
+	DDL  : Data definition language - Create/alter/delete Tables
+		Create : create tables and database
+		Alter : modify existing table... Delete and add new column
+		Drop : Delete entire table
+		Truncate : Delete all records in the table ( DOES NOT DELETE TABLE)
+	
+	DML : Data Manipulation language : Create update read and delete Records from the table
+	
 
 
 
+Database queries
+JDBC
+SOAP webservice
+Rest webservice
+Microservice
 
+9 - 3/5
