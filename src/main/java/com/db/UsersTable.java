@@ -83,7 +83,7 @@ public class UsersTable {
     {
         PreparedStatement stmt = null;
         try
-        {
+        { 
             stmt = conn.prepareStatement("delete from users where userid=?");
             stmt.setString(1, delUid);
             int rowsupdated=stmt.executeUpdate();

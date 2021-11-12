@@ -8,6 +8,7 @@ public class DatabaseConnection {
 	{
 		Connection conn =null;
 		try{
+		// load database driver
 		Class.forName("com.mysql.jdbc.Driver");
 		// JDBC connection string
 	    conn = DriverManager.getConnection

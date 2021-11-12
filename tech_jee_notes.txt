@@ -425,3 +425,295 @@ Rest webservice
 Microservice
 
 9 - 3/5
+
+% = 0 or more(ANY Characters)
+
+abcdqwe
+qweqw
+zcxzxc
+qwea
+
+
+%we%
+
+
+insert - output integer ( Number of rows  that were inserted)
+update - output integer ( Number of rows  that were updated)
+delete  - output integer ( Number of rows  that were deleted)
+select - output is table display
+
+Select = where condition to filter from all records
+insert = number of columns and number of values should match	
+	insert into customers(userid,password,firstname,lastname,
+	gender,email,phonenumber)
+	values
+	('abc','jee1','jee','doe','male','jee@g.com','2222')
+delete = ALWAYS write with where 
+update = ALWAYS write with where 
+
+
+************* JDBC ************
+
+Database software : internet/network based software located
+	by IP and Port
+	
+JDBC Client 
+	1) Mysql workbench
+	2) JDBC api
+
+Steps to interact with database server software
+	1) establish Connection :
+		IP
+		Port
+		Userid
+		Password
+		Database schema
+	
+Internet/network based software
+are located by IP and port
+
+Phone : apple,samsung,moto
+Laptop : mac, windows, chrome
+Database software : Mysql, oracle, postgres, Microst SQL server
+
+drivers : software allows you device(laptop) 
+	to communicate with new device/product
+	(printers , mouse,keyboard)
+OLTP : OnLine Transaction Processing
+	ALL or NOTHING
+// establish connection object
+Connection conn;
+try{
+	conn.setAutoCommit(false); // any successfull query execution is always temp until commit line
+	// execute queries
+	success : update warehouse table with latest stock - 100 to 95 ( Temprory)
+	failure : insert new order in csutomerorder table - mike customer order
+	conn.commit(); // permanently save all above temp DB change
+}catch(Exception e){
+	conn.rollback(); // all temp succesfull changes will be reverted/rollback
+}
+finally{
+	conn.close();
+}
+
+
+HOW to execute query on Database software
+	(CreateStatement) : Static query - select * from customer where userid='john'
+	(PrepareStatement) : Dynamic query - select * from customer where userid=?
+	(PrepareCall) Stored procedure - SQL programming method ( PL SQL programmers )
+	
+	
+	
+	
+Java method
+	return type    method name parameter
+	{
+		logic.... if / while/ local variable
+	}
+	
+	below DML are making changes to the table
+		insert/update/delete = PrepareStatement . executeUpdate();
+	Read only queries
+		select = PrepareStaement.executeQuery();
+
+
+
+JDBC code for interaction with Database
+
+UserTable.java
+	160 lines of JDBC coding : 4 methods.. insert/update/delete/select
+
+
+Spring data framework for interation with database
+	insert into users (userid,password) values ( :uid,:pwd )
+	public int registerUser(String uid,String pwd) 
+    
+	update users set password=:pwd where userid=:uid
+	public int updatePwd(String uid,String pwd) 
+    
+	delete from users where userid=:delUid
+	public int deleteUser(String delUid)
+    
+	select userid from users where userid =:userid and password=:pwd
+	public User validateLogin(String userid,String pwd) 
+        
+	
+*********** webservice ***************
+
+WSDL : Web Service Description Language 
+	neutral/language independant
+	explaination of your webservice
+	written in XML
+	
+	1) endpoint /URL of the webservice : Port/Address in wsdl
+	2) methods/services in this webservice url : operations in wsdl
+	3) input required : schema ... complex, sequences. input in wsdl
+	4) output expected
+	
+	
+Soap implementation class : webservice provider program
+	program that has the logic/code of webservice.
+	@webservice
+	
+Soap stub class : webservice consumer program
+
+input/output : primitive data type or string (choose RPC)
+input/output : complex data type arraylist, Student (choose Document)
+
+
+RPC ; cannot be validated( does not include schema in wsdl file)
+Document ; can be validated (include schema in wsdl file)
+
+Schema in wsdl file are responsible for VALIDATIONS
+	
+	
+Document
+	literal : schema includes only input/output data type
+	literal wrapped : schema includes input/output data type AND OPERATION name
+	
+	Soap document : literal wrapped
+	public class calculator
+		public int add(int a, int b)
+		public int sub(int a, int b)
+	
+	Soap document : literal 
+	public class calculator
+		public int add(int a, int b)
+		public int add(int a, int b,int c)
+	
+	
+1) simple program
+2) write @webservice on top of the program
+3) input/output  - complex data as in arraylist, student ( style =Document)
+	input/output  - simple data as in primitive-int/boolean , string ( style =RPC)
+4) validation needed : Document
+5) if webservice program has overloaded method - Document Literal
+	if webservice program has multiple method with same signature - Document LiteralWrapped
+
+Http Server Program : Servlets , Soap Webservice, Rest Web service, Struts Action 
+	Server program are typically mapped to a URL
+	Servlets  - @WebServlet("/login")
+	Soap WebService - Endpoint.publish maps http url
+	Rest Webservice - 
+		every method in the program is mapped to a http url
+		@RequestMapping
+
+@WebServlet - Server program of type Servlet
+@WebService - Server program of type Soap Webservice
+@RestController - Server program of type Rest Webservice
+
+	
+Soap UI - Http Client : Used for testing Soap webserive , Rest webservice for Get/Post methods
+Postman - Http Client : Used for testing Soap/Rest webservice for all http methods (Get/post/put etc)
+Browser - Http Client : Used for testing HTML/Rest - Get webservice.
+RestTemplate - Http Client : Java http client program that can consume Rest webservice (get and post)
+
+Rest Webservice :
+
+	Input to this webservice can be
+		Http GET : 
+			Path param : http://ip:port/servicename/10/20
+			Request param : http://ip:port/servicename?input1=10&input2=20
+		
+		Http POST : 
+			JSON input :
+	Output from this webservice can be
+		JSON, text, xml etc
+		
+		
+
+Rest Get method implementation
+
+@RestController
+public class calculator{
+	
+	//	http://ip:port/servicename/10/20
+	// servicename=addCal
+	// 
+	@RequestMapping(value = "/addCal/{param1}/{param2}", method = RequestMethod.GET)
+	public int add(
+		@PathVariable(name="param1") int a,
+		@PathVariable(name="param2") int b) throws Exception {
+		return a+b;
+	}
+	
+	// http://ip:port/servicename?param1=10&param2=50
+	@RequestMapping(value = "/subCal", method = RequestMethod.GET)
+	public int sub(@RequestParam("param1")  int a,@RequestParam("param2")  int b) throws Exception {
+		return a-b;
+	}
+	
+	
+}
+
+HOW DO YOU WRITE REST WEBSERVICE THAT CAN RECEIVE INPUT AS JSON STRING
+
+1) provide a url service name for the method = @RequestMapping(value = "/jsonReqMul"
+2) Create Rest webmethod with post (method = RequestMethod.POST)
+3) declare that it consumes JSON ( consumes = MediaType.APPLICATION_JSON_VALUE)
+4) input to this method will be received in body (@RequestBody  in the parameter)
+5) Create Java program that is JSON input compliant ( parameter to your method)
+	{
+		"a":10,
+		"b":20
+	}
+
+	public class abcd{
+		int a;
+		int b;
+		// get set methods for above variables
+	
+	}
+
+HOW DO YOU WRITE REST WEBSERVICE THAT CAN RETURN OUTPUT AS JSON STRING
+
+1) provide a url service name for the method = @RequestMapping(value = "/jsonReqMul"
+2) Use any suitable input (get or post)
+3) declare that it return JSON ( produce = MediaType.APPLICATION_JSON_VALUE)
+4) Create Java program that is JSON Ouput compliant ( parameter to your method)
+	{
+		"a":10,
+		"b":20
+	}
+
+	public class abcd{
+		int a;
+		int b;
+		// get set methods for above variables
+	
+	}
+	
+	
+JSON Mapper programs - Convert JSON string into java object
+					Convert Java object into JSON string
+					
+					
+					
+MICROSERVICES : REST + JSON
+
+
+******************** SWAGGER *****************************
+
+Rest webservice documentation library
+
+1) endpoint /URL of the webservice : 
+2) methods/services in this webservice url : 
+3) input required : 
+4) output expected
+
+
+************ Rest Java Client *******************
+1) Create RestTemplate Object
+2) call method getForObject if you are consuming a Get Webservice
+		takes 2 input
+		1) webservice http url
+		2) response data type from http url webservice
+    call method postForObject if you are consuming a Post Webservice
+		takes 2 input
+		1) webservice http url
+		2) response data type from http url webservice
+	
+	
+	
+	
+	
