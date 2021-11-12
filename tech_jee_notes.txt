@@ -711,8 +711,8 @@ Rest webservice documentation library
     call method postForObject if you are consuming a Post Webservice
 		takes 2 input
 		1) webservice http url
-		2) response data type from http url webservice
-	
+		2) input object ( sent in post body)
+		3) response data type from http url webservice
 	
 	
 	
