@@ -20,6 +20,8 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 // override doGet and doPost
 public class LoginServlet extends HttpServlet {
 
+	// CONTROLLER AND MODEL
+	
 	// user=john123 pwd=john123!
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		
