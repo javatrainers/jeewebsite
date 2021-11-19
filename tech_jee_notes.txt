@@ -864,3 +864,312 @@ JSP code
 	  </li>
 	</s:iterator>
 	
+************************ spring **********
+
+Frameworks : 
+	architecutre
+	proven solution
+	
+Web server : Tomcat - servlet container
+Application server : Enterprise server - weblogic, websphere
+		Servlet container + EJB container
+		
+small/medium/enterprise
+	
+*******Dependency Injection and Aspect Oriented Programming******
+
+
+
+
+public class Car{
+	// loose coupled
+	// tightly coupled
+	// spring framework will initialize this oject.. DEPENDANCY INJECTION
+	Engine engine;
+	
+	public void drive(){
+		engine.on();
+	}
+}
+
+Engine > economyEngine > superTurboEngine
+Engine engine=new Engine();
+Engine engine=new economyEngine ();
+Engine engine=new superTurboEngine();
+
+Car is depended on Engine
+Dependancy are global variable in the program
+HAS-A attributes - dependancy
+
+Dependancy injection ? 
+	creating/initializing object of global variables
+	additional features (additional codes) to your class
+		JDBC code
+		webservices code
+		
+		
+		
+		
+		
+		
+		
+ASPECTS
+
+Aspects : cross cutting concern. These are additional lines of code (security,logging, exce,perf,validation) required by your company 
+that are NOT DIRECTLY related to the logic
+Core business logic
+public void login(String userid, String password){
+	
+//1) logging	
+	// print userid in console, so if this customer has any issue. you can check the print statement in your console.
+// 2) security
+	// block certain users
+// 3) exception handling
+// 4) performance check - 3 second tolerance
+// 5) validation
+	if(userid=="jane" && password=="jane1!")
+		sysout("succesfull login");
+	else
+		sysout("login failed");
+}
+
+
+public void login(String userid, String password){
+	if(userid=="jane" && password=="jane1!")
+		sysout("succesfull login");
+	else
+		sysout("login failed");
+}
+
+
+public void register(String userid, String password){
+		/// REGISTERING CUSTOMER CODE
+		
+}
+
+public void payment(String userid, String password){
+		/// REGISTERING CUSTOMER CODE
+		
+}
+xml = configuration
+annotation = configuration
+
+1) configure spring dependancy in pom.xml
+2) in main program include springbootapplication and component scan annotation
+	Note package names of any class that has below @
+	mention these package names in component scan
+	
+	
+Spring annotation
+	@configuration
+	@component
+		@controller = 
+			@RestController
+				Associate HTTP url to a program
+				converting json String to java object
+				extracting all the input from http url
+				construtcing http response to the customerfrom your java object
+				
+		@service
+			Session management
+			request management
+			singleton 
+		@repository
+			Database connection
+			creating queries
+			setting dynamic binding
+			reading results from your query
+			
+	@aspect
+	
+	Engine e=new Engine();
+	
+	Scope
+		Singelton : 1 object of this program is created.. this will be shared by entire
+				company customer
+		Session : 1 Object per customer login session
+		Request : 1 Object per customer request
+		prototype : 1 Object per call
+		
+
+Dependancy injection
+	1) If your program is depended on SPring program (@componet/service/repo/config/aspect)
+	2) Create and declare global vriable to the spring program 
+	3) annotate this variable with @autowired
+	4) NEVER INITIALIZE THESE SPRING OBJECT
+	
+	
+parent interface ICar
+child	Nissan
+child Toyota
+
+@Autowired = spring framework create object
+ICar ic;
+
+
+
+******* spring aspects **********
+Spring aspects : cross cutting concerns.. additional
+	code unreleated to core business logic, but
+	required for managing, debugging,running
+	a website successfully.
+	
+	package com.amazon.pqr;
+	public class ProfileUser{
+		10 methods
+	}
+	package com.amazon.pqr;
+	public class Shopping{
+		20 methods
+	}
+	package com.amazon.abcd;
+	public class OrderUser{
+		5 methods
+	}
+	package com.amazon.abcd;
+	public class Review{
+		25 methods
+	}
+	
+	
+	
+	
+	package com.amazon.pqr;
+	public class Profile{
+		public void login(String userid, String password){	
+			ssadasdsadasda
+		}
+		public int register(String userid, String password){	
+			ssadasdsadasda
+		}
+		public void unsubscribe(String userid){
+			asdsadad
+		}
+		public String changePass(String uid,String pwd){
+			sdsdsfsd
+		}
+	}
+	package com.amazon.abcd;
+	public class Shopping{
+		public void add2Cart(String prodName,int quantity){	
+			ssadasdsadasda
+		}
+		public void removeFromCart(String prodName){	
+			ssadasdsadasda
+		}
+		public void checkout(){
+			asdsadad
+		}
+	}
+	
+	
+	public class Strut{
+		@autowired
+		Shopping s;
+		public void method(){
+			sysout("in strut");
+			s.add2Cart("iphone");
+		}
+	}
+	@Aspect
+	public class ShoppingAspect{
+		@Around("within (com.amazon..*)")
+		public void abcd( ProceedingJoinPoint pj){
+			sysout("hi entering");
+				pj.proceed();
+			sysout("bye bye leaving");
+		}
+	}
+	package com.amazon.abcd;
+	@Service 
+	public class Shopping{
+		public int add2Cart(String prodName){	
+			sysout("in shopping spring");
+			int i=10/0; // exception thrown
+			return i;
+		}
+	}	
+	STRUT >>>      ShoppingAspect  >>> Shopping
+	in strut
+	hi entering
+	in shopping spring
+	bye bye leaving
+	
+
+
+
+********* Spring data *************
+
+
+Database : 
+	stores information : ENTITY represents the information/record
+	CRUD operations : REPOSITORY implements/provides CRUD operation
+		
+CRUD
+Create - insert - Repository . save()
+Read - select - Repository findBy........
+Update - update - Repository.save()
+Delete - delete - Repository.delete()
+
+queries
+	SQL
+	JPQL
+
+
+************** JUnit ***********
+
+
+Login method - testing 
+	1 scenario (test case) 
+	confirm/assert if login method return false on EMPTY USerid and pasword
+	confirm/assert if login method return false on WRONG userid and password
+	confirm/assert if login method return true on CORRECT userid and password
+	
+	test suite : group of test cases
+	
+	
+	assertEqual( 	Message to display if confirmation fails , 	Expected result,		Result received		) 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Product table
+	ProductName	quantity
+	samung		20
+select * from product where productName='' or quantity=12;	
+	
+@Entity // store information
+@Table(name ="product")
+public class Prd{
+	@Id
+	@column("ProductName")
+	String prod;
+	@column("quantity")
+	int quantity;
+}
+@Repository // CRUD operation
+public interface prodRepo extends JPARepos<prd,String>{
+	List<Prd> findByProdOrQuantity(string prodName,String quan);
+}
+
+@autowired
+prodRepo repo;
+
+
+prodRepo repo;
+@autowired
+public void setRepo(prodRepo t){
+	repo=t;
+}
+
+
+Prd p1=new Prd();
+p1.prod="Iphone"; p1.quantity=100;
+repo.delete(p1);
+
+
