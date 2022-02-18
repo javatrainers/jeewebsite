@@ -1,46 +1,34 @@
-internet - (WAN - worldwide area network) global computer network (billlions of device connected)
-	Wireline : copper/fiber - physical wireline / cable
-	Wireless : satelites (NOT wifi)
+internet - (WAN - worldwide area network) global device network (billlions of device connected)
+	Wireline - home internet (Wifi)
+	Wireless - cell data plan 
+intranet - organization, company, university network.
+	secure, monitored data transfer 
+LAN - home internet
+
+ip - unique identifier for each device connected to internet
+	IPv4 - x.x.x.x = 12.56.123.244
+		x=0-255
+		255 x 255 x 255 x 255 = 4 billion
+		0.0.0.0 
+		0.0.0.1
+		255.255.255.255
+	IPv6 - 3FA7:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx
+		x = hexadecimal
+			16 = 0-9 A-F
+		hexagon - 6 sided shape
 	
-	Home : (modem/router) physically connected to the wireline n/w
-		TV, Laptop, phone,refrigeerator, thermostat, vaccum
-		wifi - small distance(meters) wireless network
-			connected to your modem/router
-	Roaming : data plan on mobile
-	
-intranet - corporate/school computer network. (thousands of devices connected)
-	unlimited communication within this walled garden.
-	outside communication with internet more secure/scrutinized
-
-LAN (Local area network )- Home computer network. (less than hundred devices connected)
-	
-
-ip - unique identifier of every device that is connected to internet
-
-	8 billion = < 1 device ( phone, laptop, tablet, smart watch )
-	100 billions connected to internet - each should have unique ip
-		IPv4 = 0-255 . 0-255 . 0-255 . 0-255
-			4 octet/ subnet
-				123.25.67.234
-				4.2 billion unique IPv4 address = 256 X 256 X 256 X 256
-		IPv6	= 8 sequence (pair of 4 characters )
-			xxxx : xxxx : xxxx : xxxx : xxxx : xxxx : xxxx : xxxx 
-			0-9 a b  c d e f - hexadecimal
-			95ae : xxxx : xxxx : xxxx : xxxx : xxxx : xxxx : xxxx 
-			(16^4 ) ^8
-			trillions of trillions of IPv6 addresses
-
-port/socket - unique identifier of internet softwares running on a machine
-	port - allows entrance into a device
-		Flight - airport port of entry
-		ship - docker port of entry
-	Individual port is assigned to each internet software running on the device
-	0-65535
-
-dhcp  - provides unique ip address
-dns - domain name server
-router - pathway between 2 end point
+port/socket - 
+dhcp  - dynamic host configuration protocol.
+	allocated ip address
+dns 
+router 
 load balancer - 
+	proxy server
+	Divide task/job between all processing machines
+	
+	Software that monitor actual job processing machine
+	Round Robin
+	idle server first
 
 ipconfig - show my lan ip address
 netstat -a - show all ports open
