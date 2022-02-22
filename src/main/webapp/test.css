@@ -1,81 +1,33 @@
-#webpage{
-	height:100%;
-	width:100%;
-	background:yellow;
+#entirePage{
+		height:100%;
+		width:100%;
+		background:#E8DAEF;
 }
-.header{
-	height:20%;
-	width:100%;
-	background:#4A68A4;
-	font-size:20;
-	color:white;
-	font-family:verdana;
-	display:block;
-	text-align: left;
-
-}
-.header:hover{
-	border-style:solid;
-	background:#18397A;
- 
+#logo{
+	height:15%;
+		width:100%;
+		background:#5B2C6F;
 }
 
 #body{
-	height:70%;
-	width:100%;
-	background:#DCE2EE;	
+	height:75%;
+		width:100%;
+		background:#D2B4DE ;
 }
 #footer{
 	height:10%;
 	width:100%;
-	background:#18397A;		
+	background:black;
 }
-#bodytop{
-	height:50%;
-	width:100%;
-	background:#C7D5F1;	
-}
-#bodybottom{
-	height:50%;
-	width:100%;
-	background:#A0BAEE;	
-}
-#bodybottomleft{
-	height:100%;
-	width:50%;
-	background:#A0BAEE;	
-	float:left;
-}
-#bodybottomright{
-	height:100%;
-	width:50%;
-	background:#A0BAEE;	
-	float:left;
-}
-#filters{
+#filter{
 	height:100%;
 	width:10%;
-	background:lightgrey;
-	float:left;	
+	background:#8E44AD;
+	float:left;
 }
-#product{
+#productDisplay{
 	height:100%;
 	width:90%;
-	background:white;	
-	float:left;	
-}
-#display{
-	border-radius:10px;
-	height:90%;
-	width:20%;
-	float:left;	
-	border-style : solid;
-	margin:5px;
-	padding:10px;
-}
-#display:hover{
-	transform :translate(50px, 50px);  
-	transform:rotate(180deg); 
-	transition-duration: 60s;
-
+	background:white;
+	float:left;
 }

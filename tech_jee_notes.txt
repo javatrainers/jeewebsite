@@ -77,26 +77,49 @@ Validation = Mandatory info in this file/ data type validation
 	doc type
 	xsd
 elements = <>
-	<Company>
-		<person age="12" >
-			<firstName>john</firstName> 
-			<lastname>doe</lastname> 
-			<address>
-				<street>asdasda </street>
-				<city>asdsad a312</city> 
-				<zip>123</zip>
-			</address>
-		</person>
-		<person age="12" >
-			<firstName>jane</firstName> 
-			<lastname>doe</lastname> 
-			<address>
-				<street>dasd </street>
-				<city>qwe a312</city> 
-				<zip>234</zip>
-			</address>
-		</person>
-	</Company>
+	asdad asd asdsad asdaqweqwe 12312312 12312332
+
+XML - Extensible Markup Language
+Meta-Data : describing complex data.. Information about data
+<Customers>
+	<Customer   userid="john" age="10"  >
+		<Street>
+			<address1>asdad<address1>
+			<address2>asd<address2>
+		</Street>
+		<City>asdsad</City>
+		<State>asdaqweqwe</State>
+		<Phone>12312312</Phone>
+		<zip>12312332</zip>
+	</Customer>
+	<Customer>
+		<Street>qweqwe qweqwe</Street>
+		<City>sdfdsf</City>
+		<State>fgfdg</State>
+		<Phone>43534534</Phone>
+		<zip>2343544</zip>
+	</Customer>
+</Customers>
+
+Elements - anchor tag data, elements describe the data
+	define boundary or separator in describing data
+	Opening tag : <Customers> opening customer tag
+	closing tag : </Customers> closing customer tag
+Root element - first element in xml file <Customers>
+Parent element - Customers, Customer
+Child element - Customer, Street/city
+Sibling element - street/city/state/phone/zip
+Element values - any content within opening and closing respective tags are values 
+	of the element
+	
+
+
+attributes - key - value pair used for simple data 
+	declared inside opening tag
+	can have multiple attributes in the same element opening tag
+	indivisible data
+
+
 	1) opened element must be closed (open and close tags / )
 	2) no space in name of element
 	3) nested elements
