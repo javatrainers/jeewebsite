@@ -1,14 +1,77 @@
 <html lang="en">
-	<link href="test.css" rel="stylesheet" type="text/css"></link>  
-	<div id="entirePage">
-		
-		<div id="logo">
+	<link href="test.css" rel="stylesheet" type="text/css"></link>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="test.js"></script>  
+	<div id="entirePage" >
+		<div class="logo SecondLogoCSS">
+			This is jee website
+			<form action="">
+				<table style="color:white">				
+					<tr>			
+						<td>Userid</td>
+						<td><input type="text" name="user" id="user" ></input></td>
+					</tr>			
+					<tr>			
+						<td>Password</td>
+						<td><input type="password"  name="pass" id="pass" ></input>	</td>
+					</tr>			
+					<tr>			
+						<td></td>
+						<td><input id="registerButton" value="register" type="submit"></input></td>
+					</tr>			
+				</table>				
+
+				
+			</form>
 		</div>
 		
 		<div id="body">
 			<div id="filter">
+				<input type="radio" name="fruits">banana</input><br>
+				<input type="radio" name="fruits">apple</input><br>
+				<input type="radio" name="fruits">mango</input><br>
+				<br><br>
+				
+				<input type="checkbox" name="vegetable">onion</input><br>
+				<input type="checkbox" name="vegetable">tomato</input><br>
+				<input type="checkbox" name="vegetable">potato</input><br>
+				<br><br>
+				
+				<textarea rows="5" cols="10"></textarea>
+				<br>
+				<ul>
+					<li>mango</li>
+					<li>apple</li>
+					<li>banana</li>
+				</ul>
+				
+				<ol>
+					<li>onion</li>
+					<li>tomato</li>
+					<li>potato</li>
+				</ol>
+				<br>
+				<select>
+					<option value="java">java</option>
+					<option value="dotnet">dotnet</option>
+					<option value="jee">jee</option>
+					<option value="python">py</option>
+				</select>
+				
+				
+
 			</div>
 			<div id="productDisplay">
+				<div id="prod">
+					<img id="myimage" src="images/test.png" height="80%" width="80%"></img>
+				</div>
+				<div id="prod">
+					<img id="myimage" src="images/test.png" height="80%" width="80%"></img>
+				</div>
+				<div id="prod">
+					<img id="myimage" src="images/test.png" height="80%" width="80%"></img>
+				</div>
+				<input type="text">
 			</div>
 		</div>
 		

@@ -1,115 +1,34 @@
-function validateUserid(){
-	var userTyped=document.getElementById( "user").value ;
-	if( userTyped.length < 6 || userTyped.length > 30 ){
-		alert("userid must be between 6 and 30 characters long");
-		document.getElementById( "user").style="background:red";
+function checkUser(){
+	//var userTypedValue=	document.getElementById('user').value;
+	
+	// val() = reading customer typed value in uid text box
+	var userTypedValue=	$('#user').val();
+	
+	if( userTypedValue == "" ){
+		// val( input ) = write message in uid text box
+		$('#user').val("please enter userid");
 	}
-	else
+	else if( userTypedValue=="john" || userTypedValue=="jane")
 	{
-		document.getElementById( "user").style="background:white";
+		//alert("userid already taken");
+		//document.getElementById('user').style="background:red";
+		$("#user").css("background","red");
+		$("#registerButton").slideUp( 5000 ); // 5000 milli sec=5 sec
 	}
-}
+	else{ // mike
+		$("#registerButton").slideDown( 5000 );
+		//document.getElementById('user').style="background:white";
+		$("#user").css("background","white");
+	}	
 
+}
 
 $(document).ready(function() {
-
-	$("#loginsubmit").click(validatelogin);	
-	$(".header").mouseenter(disappearProduct);
-	$(".header").mouseleave(appearProduct);
-	$("#user").blur( validateUserid );
-//	$("#shoe").mouseenter( reportShoeInterest );
+	$("#user").blur(checkUser);
 });
 
-function reportShoeInterest(){
-	var loginAttemptCheck={
-	        url: '/shoeInterest',
-	        type: 'get',
-	        context: this,
-		    success: function (data) {
-		alert("call succeded");
-		        },
-	        error: function (data) {
-	        	alert("call failed");
-	        }
-	};
-	
-	$.ajax(  loginAttemptCheck  );
-
-
-}
-
-function disappearProduct(){
-	 $("#product1").fadeOut( 10000 ); 
-	// $("#product1").show(); 
-}
-
-function appearProduct(){
-	$("#product1").fadeIn( 10000 ); 
-	//$("#product1").slideDown( 10000 ); 
-	// $("#product1").show(); 
-}
-
-function validatelogin(){
-	// collect whatever customer typed in the login section
-	
-	//var customerEnteredUid=document.getElementById("user").value;
-	var customerEnteredUid=$("#user").val(  );
-	
-	//var customerEnteredpwd=document.getElementById("pwd").value;
-	var customerEnteredpwd=$(".pwd").val();
-	
-	// verify all login info is entered correctly
-	if(customerEnteredUid == ""  )
-	{
-		$("#user").val("please enter");
-		//document.getElementById("user").style.background="red";
-		$("#user").css("background","red");
-		$("#user").css("color","white");
-		
-		alert(" userid is mandatory");
-		return false;
-	}
-	else if (customerEnteredpwd == ""  )
-	{
-		document.getElementById("pwd").style.background="blue";
-		alert(" password is mandatory");
-		return false;
-	}
-	else
-		return true;
-	
-}
-
-
-
-var customerclick="";
-function hoverfilter(){
-   console.log("customer mouse is now hovering over filter website section");
-}
-function shoe(){
-	customerclick="shoe";
-	console.log("customer is loooking for "+customerclick);
-}
-function cellphone(){
-	customerclick="cellphone";
-	console.log("customer is loooking for "+customerclick);
-}
-function uidTest(){
-	console.log("customer is about to type usrid");
-}
-function uidFocus(){
-	console.log("customer is now focusing on userid textbox");
-}
-function uidBlur(){
-	console.log("customer lost focus from userid textbox");
-}
-
-function filterClicked(){
-	console.log("customer just clicked filter section of webpage");
-}
-var xyz=123;
-
-function   test( a, b  ){
+test();
+function   test( ){
 	
 	// basic primitive data type
 	var v="john";
@@ -136,160 +55,7 @@ function   test( a, b  ){
 	
 	student.name;
 	student.learn();
-	alert("hi");
-	add(123,12);
+	//alert("hi how are you");
 	return 1;
 	
 }
-
-add(1,2);
-function add( a, b){
-
-	for(i=0; i < 3;i++)
-		console.log("hello :"+i);
-	
-	if ( a == b ){
-		console.log("same");
-	}
-	else{
-		console.log("not same");
-	}
-	
-	while(true){
-		console.log("in while loop");
-		break;
-	}
-	
-	do{
-		console.log("in do while loop");
-		break;
-	}while(true);
-	 
-	try{
-		var aa=abc.split("a");
-	}catch(e){
-		console.log("error caught");
-	}finally{
-		console.log("finally block");
-	}
-	
-	var email="abcd.com";
-	console.log(email);
-	email=email.replace("a","c");
-	console.log(email);
-	var arr=email.split("@");
-	console.log(arr);
-/*	
-	if(email.indexOf("@")  == -1 )
-		alert("invalid email id"); // popup window
-	else
-		alert("valid email id");
-*/
-	
-}
-
-function clickLogo(){
-	alert("double click with jquery");
-}
-
-
-function abc(){
-	alert("customer is moving mouse on userid text box");
-}
-
-
-
-
-
-
-
-
-
-/*
-checkDevice();
-function checkDevice(){
-	var a=window.navigator.userAgent;
-//	alert(a);
-}
-
-$(document).ready(function() {
-	$("#loginsubmit").click(validatelogin);
-	$("#reguid").blur(checkUser);
-	$(".prodDisplay").click(animate);
-	loginAttemptCheck();
-	
-});
-
-function checkUser(){
-
-	var checkUserAjaxObj={
-	        url: '/doesUserExist',
-	        type: 'post',
-	        data: {
-	        	registerUser:$("#reguid").val()
-			},
-	        context: this,
-		    success: function (data) {
-	        		if(data=="true")
-	        			alert("userid already taken");
-	        		else
-	        			alert("userid available");
-		        },
-	        error: function (data) {
-	        	console.log("failure");
-	        }
-	};
-	
-	$.ajax(  checkUserAjaxObj  );
-	
-}
-function animate(){
-	$(".prodDisplay").slideUp(10000);
-}
-*/
-
-
-
-/*
-	var customerEnteredUid=$("#uid").val();
-	var customerEnteredpwd=$(".pass").val();
-	if(customerEnteredUid == "" || customerEnteredpwd == "")
-		alert(" userid and password is mandatory");
-	if(customerEnteredUid.indexOf("@")  == -1 ){
-		alert("invalid userid id");
-		$("#uid").css("background","red");
-		$("#submit").hide();
-	}
-	$("#uid") - access html element by "id" attribute
-	$(".pass") - access html element by "class" attribute
-	$("label") - access html element by element name
-	$("#products").fadeOut(3000);
-	$("#uid").css("background","blue");
-	$("#uid").val("set value");
-	
-*/	
-	
-	
-/*
-function loginAttemptCheck(){
-
-	var loginAttemptCheck={
-	        url: '/loginAttempt',
-	        type: 'get',
-	        context: this,
-		    success: function (data) {
-					$("#loginAttemptDisplay").text("login attempts:"+data);
-		        },
-	        error: function (data) {
-	        	console.log("failure");
-	        }
-	};
-	
-	$.ajax(  loginAttemptCheck  );
-	
-}
-
-*/
-
-
-

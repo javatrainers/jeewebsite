@@ -3,11 +3,37 @@
 		width:100%;
 		background:#E8DAEF;
 }
-#logo{
+.logo{
 	height:15%;
 		width:100%;
 		background:#5B2C6F;
+		
 }
+.SecondLogoCSS{
+	font-size:20;
+		color:yellow;
+		text-align:center;
+		font-family:verdana;
+}
+#myimage{
+	border-style:none;
+}
+#prod{
+	float:left;
+	height:30%;
+	width:20%;
+	background:#EBEDEF;
+	margin-right:10px;
+	margin-top:10px;
+	padding:25px;
+	display:block;
+	border-radius:15px;
+}
+#prod:active{
+	transform:rotate(45deg); 
+	transition-duration: 15s;
+}
+
 
 #body{
 	height:75%;
