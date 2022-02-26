@@ -14,22 +14,36 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
-// @ = annotation
 @WebServlet("/login")
-// HttpServlet and GenericServlet - doGet, doPost, init, service
-// override doGet and doPost
 public class LoginServlet extends HttpServlet {
-
-	// CONTROLLER AND MODEL
 	
-	// user=john123 pwd=john123!
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		
+	public void doPost(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
+		String uid = req.getParameter("user");
+		String pwd = req.getParameter("pass");
+		if(uid.equals("john123") && pwd.equals("john123!"))
+			// forward if next web page.. is in the same project/website
+			//req.getRequestDispatcher("success.html").forward(req, res);
+			res.sendRedirect("success.html");
+		else
+			// redriect if next web page.. is in outside this project/website
+			res.sendRedirect("failure.html");
+	}
+	public void doGet(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
 		String uid = req.getParameter("user");
 		String pwd = req.getParameter("pwd");
 		if(uid.equals("john123") && pwd.equals("john123!"))
-		{	/*
-			
+			// forward if next web page.. is in the same project/website
+			req.getRequestDispatcher("success.html").forward(req, res);
+		else
+			// redriect if next web page.. is in outside this project/website
+			res.sendRedirect("https://www.google.com");
+	}
+/*
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		String uid = req.getParameter("user");
+		String pwd = req.getParameter("pwd");
+		if(uid.equals("john123") && pwd.equals("john123!"))
+		{	
 			req.setAttribute("name", "john");
 			req.setAttribute("loggedin", true);
 			req.setAttribute("visit", 1);
@@ -38,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			req.getAttribute("name" );
 			req.getAttribute("loggedin" );
 			req.getAttribute("visit" );
-			*/
+			
 			//res.getWriter().write(" welcome to our website");
 			byte[] responseBinary="welcome".getBytes();
 			System.out.print(responseBinary);
@@ -50,17 +64,7 @@ public class LoginServlet extends HttpServlet {
 			res.sendRedirect("https://www.google.com");
 	}
 	
-	public void doPost(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
-		String uid = req.getParameter("user");
-		String pwd = req.getParameter("pwd");
-		if(uid.equals("john123") && pwd.equals("john123!"))
-			// forward if next web page.. is in the same project/website
-			req.getRequestDispatcher("success.html").forward(req, res);
-		else
-			// redriect if next web page.. is in outside this project/website
-			res.sendRedirect("https://www.google.com");
-	}
-	/*
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		 
 		HttpSession sess=req.getSession();

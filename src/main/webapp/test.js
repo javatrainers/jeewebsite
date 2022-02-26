@@ -24,7 +24,7 @@ function checkUser(){
 }
 
 $(document).ready(function() {
-	$("#user").blur(checkUser);
+//	$("#user").blur(checkUser);
 });
 
 test();

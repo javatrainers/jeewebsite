@@ -363,6 +363,94 @@ JSON - transfer complex data between client and server
 	
 *************** servlet **************
 
+************************* IMPORTANT *****************
+************************* IMPORTANT *****************
+Data transfer : customer action(button click) trigger
+	data transfer between customer;s browser and
+	serverside java program
+	
+	protocol/channel : http
+		configured in form action attribute
+		on click of submit button uid/pwd 
+		is sent to above action http url
+	format : html - submit ...
+		http://localhost/login?user=john&pass=john123
+		
+		http://localhost/login  >>>>> action attribute in form element
+		user=john&pass=john123 >>>> html name attribute and customer's input
+		
+				name attribute value from text box
+					&
+				customer typed value in that text box
+				makes a Key=value pair
+				user=johnpass=john123
+				
+		http://localhost/login  
+			On the internet when u have browser all communications are HTTP based
+			java program that can help with login has to be on HTTP url
+			
+		user=john&pass=john123 
+			Java program needs to know what customer typd on the webpage
+		
+		
+	method
+		GET = http://localhost/login?user=john&pass=john123 = UNSAFE
+			Data sent in URL in plain text
+		POST = http://localhost/login
+			user=john&pass=john123 ( inside http body )
+			
+			
+			
+			
+cart=iphone2999samsung3500
+address=efsdf 32432 dsfsdf sdfsdf 234 2dsfdsf s32432
+complex data transfer
+	<address>
+		<addressLine>
+			<line1></line1>
+			<line2></line2>
+		</addressLine>
+		<street>efsdf 32432 dsfsdf</street>
+		<city>sdfsdf 234</city>
+		<state>dfdfgdg</state>
+		<zip>s32432</zip>
+	</address>
+
+	var jsonAddress={
+		"addressLine":{
+				"line1":"ads",
+				"line2":"qweqwe"
+			}
+		"street":"efsdf 32432 dsfsdf",
+		"city":'a',
+		"state":true,
+		"zip":123,
+		"ads":123.3,
+		"names":[ "john","jane" ]
+	}
+	jsonAddress.state WILL NOT WORK
+	
+Convert JSON into javascript object
+var javascriptAddress=JSON.parse(jsonAddress);	
+	javascriptAddress.state WILL WORK
+	javascriptAddress.state =false;
+	
+Convert Javascript into JSON object
+var jsonAdd=JSON.stringify(	javascriptAddress );
+	
+JSON = JavaScript Object Notation
+String representation of javascript object
+	var address={
+		street:"efsdf 32432 dsfsdf",
+		city:"sdfsdf 234",
+		state:"2dsfdsf",
+		zip:"s32432"
+	}
+	console.log( address.state  );
+
+
+************************* IMPORTANT *****************
+
 Who creates servlet java object = Tomcat web server software
 Who calls doGet or doPost = doService method in the servlet
 Who gives request / response object = tomcat creates req/res object gives it to service method
