@@ -396,7 +396,7 @@ Data transfer : customer action(button click) trigger
 	method
 		GET = http://localhost/login?user=john&pass=john123 = UNSAFE
 			Data sent in URL in plain text
-		POST = http://localhost/login
+			= http://localhost/login
 			user=john&pass=john123 ( inside http body )
 			
 			
@@ -450,6 +450,27 @@ String representation of javascript object
 
 
 ************************* IMPORTANT *****************
+Internet
+	Client : google customers  (Browser )
+		requesting to show restaurants near my location
+	Server: google website ( machine where website code installed)
+		respond - here are the restaurant neaar you
+
+HTTP : mode of transporting data between 2 machines
+	client machine - make request ( HTTP Request)
+	Server machine - HTTP response
+
+Request
+
+
+Response
+
+	TOMCAT SOFTWARE
+		LoginServlet ls=new LoginServlet();
+	Service method
+		ls.doGet();
+	
+
 
 Who creates servlet java object = Tomcat web server software
 Who calls doGet or doPost = doService method in the servlet
@@ -471,13 +492,24 @@ Servlet
 	destroy - override is optional server shuts down ( servlet object is destroyed )
 
 Response type category
+	Servlet program response to the client
 	webpage
+		upon login... response on the browser is webpage.. email inbox, facebook page,
+					google search result
 		redirect
+			res.sendRedirect(htmlpage url);
 		forward
-	text/binary : text message, image, video
-		response.getWriter - text response (Character/text stream)
-		response.getoutputstream  - image/video ( binary stream)
-	
+			req.getRequestDispatcher(htmlpage url).forward
+		
+	Text response
+		IM, chat, text message
+		res.getWriter().write(" text reponse");
+	Binary response
+		video, audio, image... youtube... video streaming
+		binaryRes = byte array that contains audio/image/video
+		res.getOutputStream().write(  binaryRes );
+		
+		
 Http Sessions
 	HTTP is a stateless protocol 
 	State - context of converstation between 2 party
@@ -486,21 +518,25 @@ Http Sessions
 	write information in customer sesssion = setAttribute(name,value);
 		Session table = key / value pair.. key is String.. value can be any Object(primtive/complex objects)
 			String = 123/true/arraylist/String
-
-Request methods
-
-
-Response methods
-
 	
-status code
+HTTP Response status code
 	200 : request succesfull.
+		server program response ( text,binary,webpage-forward)
 	3XX : request redirect
-	4XX : request not available/unauthorized
-	5XX : server had a problem ( server program had error/exception)
+		server program response ( webpage-redirect)
+	4XX : CLIENT SIDE problem
+		Human typo error (wrong url typed, unauthorized etc)
+		html / javascript code problem
+	5XX : SERVER SIDE problem
+		java program has an exception
 	
 	
-
+Information
+	Request data- per request.. forward, submit
+	session data- per customer
+	servlet config - ALL customers share from of 1 server program
+	servlet context - ALL customers share from within entire website
+	
 **************************************** Database **************************************** 
 
 database schema

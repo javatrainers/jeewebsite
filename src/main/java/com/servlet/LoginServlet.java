@@ -21,23 +21,47 @@ public class LoginServlet extends HttpServlet {
 		String uid = req.getParameter("user");
 		String pwd = req.getParameter("pass");
 		if(uid.equals("john123") && pwd.equals("john123!"))
-			// forward if next web page.. is in the same project/website
-			//req.getRequestDispatcher("success.html").forward(req, res);
-			res.sendRedirect("success.html");
+		{
+			// binary = bytes
+			byte [] binaryRes="Login success".getBytes();
+			res.getOutputStream().write(  binaryRes );
+		}
 		else
-			// redriect if next web page.. is in outside this project/website
-			res.sendRedirect("failure.html");
+			// text response
+			res.getWriter().write("Login failed");
 	}
 	public void doGet(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
 		String uid = req.getParameter("user");
-		String pwd = req.getParameter("pwd");
+		String pwd = req.getParameter("pass");
 		if(uid.equals("john123") && pwd.equals("john123!"))
+		{
+			req.setAttribute("userid", "john123");
+			req.setAttribute("address", "ny");
 			// forward if next web page.. is in the same project/website
 			req.getRequestDispatcher("success.html").forward(req, res);
+		}	
 		else
 			// redriect if next web page.. is in outside this project/website
-			res.sendRedirect("https://www.google.com");
+			res.sendRedirect("https://accounts.google.com/signup/v2/webcreateaccount?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=SignUp");
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 /*
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		String uid = req.getParameter("user");
