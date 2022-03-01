@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.db.DatabaseConnection;
+import com.db.UsersTable;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -20,29 +22,44 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
 		String uid = req.getParameter("user");
 		String pwd = req.getParameter("pass");
-		if(uid.equals("john123") && pwd.equals("john123!"))
-		{
-			// binary = bytes
-			byte [] binaryRes="Login success".getBytes();
-			res.getOutputStream().write(  binaryRes );
+		try {
+			Connection conn=DatabaseConnection .getDBConnection();
+			boolean result=UsersTable.validateLogin(uid, pwd, conn);
+			if(uid.equals("john123") && pwd.equals("john123!"))
+			{
+				// binary = bytes
+				byte [] binaryRes="Login success".getBytes();
+				res.getOutputStream().write(  binaryRes );
+			}
+			else
+				// text response
+				res.getWriter().write("Login failed");
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-		else
-			// text response
-			res.getWriter().write("Login failed");
 	}
 	public void doGet(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
 		String uid = req.getParameter("user");
 		String pwd = req.getParameter("pass");
-		if(uid.equals("john123") && pwd.equals("john123!"))
-		{
-			req.setAttribute("userid", "john123");
-			req.setAttribute("address", "ny");
-			// forward if next web page.. is in the same project/website
-			req.getRequestDispatcher("success.html").forward(req, res);
-		}	
-		else
-			// redriect if next web page.. is in outside this project/website
-			res.sendRedirect("https://accounts.google.com/signup/v2/webcreateaccount?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=SignUp");
+		try {
+			Connection conn=DatabaseConnection .getDBConnection();
+			// method call = pass by value
+			boolean result=UsersTable.validateLogin(uid, pwd, conn);
+			// "boolean result=" handling the response from method call
+			if(result==true)
+			{
+				req.setAttribute("userid", "user");
+				req.setAttribute("address", "ny");
+				// forward if next web page.. is in the same project/website
+				req.getRequestDispatcher("success").forward(req, res);
+			}
+			else
+				// text response
+				res.sendRedirect("https://accounts.google.com/signup/v2/webcreateaccount?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=SignUp");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

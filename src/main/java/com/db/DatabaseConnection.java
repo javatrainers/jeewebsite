@@ -9,10 +9,11 @@ public class DatabaseConnection {
 		Connection conn =null;
 		try{
 		// load database driver
+			// printer driver , mouse driver, wifi driver
 		Class.forName("com.mysql.jdbc.Driver");
 		// JDBC connection string
 	    conn = DriverManager.getConnection
-	    		("jdbc:mysql://127.0.0.1:3306/training","root","root"); 
+	    		("jdbc:mysql://localhost:3306/training","root","root"); 
 		  return conn;
 		}
 		catch(Exception e)

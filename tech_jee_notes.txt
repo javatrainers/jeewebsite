@@ -536,7 +536,29 @@ Information
 	session data- per customer
 	servlet config - ALL customers share from of 1 server program
 	servlet context - ALL customers share from within entire website
+
+************************** JSP , Spring mvc *************
+JSP
+	JSP : Java Server Pages (dynamic webpage)
+		webpage content changes from user to user
+	HTML : static webpage
+		wikipedia
 	
+	JSP = HTML + Java ( variable, control flows )
+
+JSP Configuration
+	1) pom.xml = jsp dependancy
+	2) main application.java - extends SpringBootServletInitializer
+		and override configure method
+		
+
+Spring MVC
+	Model = Java programs
+	View = webpage (html / jsp )
+	Controller = controls http url
+	
+	
+
 **************************************** Database **************************************** 
 
 database schema
@@ -672,6 +694,30 @@ Spring data framework for interation with database
 	select userid from users where userid =:userid and password=:pwd
 	public User validateLogin(String userid,String pwd) 
         
+	executeUpdate() = used for insert/update/delete
+					return intezer
+executeQuery() = used for select
+					return resultSet
+
+Createing
+	insert query
+	method called = statement.executeUpdate();
+	output : integer... how many records were inserted
+	
+Reading
+	select query
+	method called = statement.executeQuery();
+	output : resultset
+	
+updating
+	update query
+	method called = statement.executeUpdate();
+	output : integer... how many records were changed
+	
+deleting
+	delete query
+	method called = statement.executeUpdate();
+	output : integer... how many records were deleted
 	
 *********** webservice ***************
 

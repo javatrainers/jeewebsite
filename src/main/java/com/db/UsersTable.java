@@ -108,29 +108,20 @@ public class UsersTable {
 		//date="03/20/15"
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
-        boolean result=false;
         try
         {
         	stmt = conn.
         			prepareStatement
         			("select userid from users where userid =? and password=?");
-        	stmt.setString(1, userid);
-        	stmt.setString(2, pwd);
-            resultSet = stmt.executeQuery();
-           while(resultSet.next())
+        	stmt.setString(1, userid); // dynamic binding
+        	stmt.setString(2, pwd); // dynamic binding
+        	resultSet = stmt.executeQuery();
+        	if(resultSet.next())
             {
-            	result=true;
-            }/* sample code to read multiple records
-            ArrayList<product> prductList=new ArrayList<product> (); 
-            while(resultSet.next())
-            {
-            	Product p=new Product();
-            	p.setProdName(resultSet.getString("product_name"));
-            	p.setEnroStatus(resultSet.getString("enrollment_status"));
-            	productList.add(p);
+            	return true;
             }
-            */
-            return result;
+           
+           return false;
         }
         catch (SQLException e)
         {
