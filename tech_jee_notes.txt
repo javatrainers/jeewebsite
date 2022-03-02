@@ -801,31 +801,41 @@ Rest Webservice :
 	Output from this webservice can be
 		JSON, text, xml etc
 		
-		
+http://localhost/sub?input1=25&input2=50
+GET
 
-Rest Get method implementation
 
-@RestController
-public class calculator{
-	
-	//	http://ip:port/servicename/10/20
-	// servicename=addCal
-	// 
-	@RequestMapping(value = "/addCal/{param1}/{param2}", method = RequestMethod.GET)
-	public int add(
-		@PathVariable(name="param1") int a,
-		@PathVariable(name="param2") int b) throws Exception {
-		return a+b;
-	}
-	
-	// http://ip:port/servicename?param1=10&param2=50
-	@RequestMapping(value = "/subCal", method = RequestMethod.GET)
-	public int sub(@RequestParam("param1")  int a,@RequestParam("param2")  int b) throws Exception {
-		return a-b;
-	}
-	
-	
+http://localhost/updateFBAddress/asdad/asdwqewe/wrrt/reteter
+http://localhost/updateFBAddress?street=asdad&city=asdwqewe&state=wrrt&country=reteter
+
+
+Rest webservice with JSON as the input
+1) POST : input is not in url.. it is complex json input.
+2) input format : JSON
+
+http://localhost/mul
+sent below json inside http body
+{
+	"param1":50,
+	"param2":10
 }
+
+JSONMapper program = jackson library
+Input in=new Input();
+in.param1=50;
+in.param2=10;
+
+public class Input{
+	int param1;
+	int param2;
+	String name;
+	// get set methods
+}
+
+
+
+
+
 
 HOW DO YOU WRITE REST WEBSERVICE THAT CAN RECEIVE INPUT AS JSON STRING
 
