@@ -748,21 +748,44 @@ Document ; can be validated (include schema in wsdl file)
 Schema in wsdl file are responsible for VALIDATIONS
 	
 	
-Document
-	literal : schema includes only input/output data type
-	literal wrapped : schema includes input/output data type AND OPERATION name
+Soap
+	binding = connect soap xml with java program
+
+RPC :
+	java program has simple data types
+	validation is unavailable = (Schema element is missing in wsdl)
+		input data type match
+		input count
+Document :
+	java program has complex data type ( collections arraylist etc or Person/Student)
+	validation is provided = (Schema element is provided in wsdl)
+
+WSDL = wisdal
+Web Service Description Language
+	any customer from a non Java background can understand your webservice
 	
-	Soap document : literal wrapped
-	public class calculator
-		public int add(int a, int b)
-		public int sub(int a, int b)
 	
-	Soap document : literal 
-	public class calculator
-		public int add(int a, int b)
-		public int add(int a, int b,int c)
+document literal
+<method>
+	<input1>10</input1>
+	<input2>20</input2>
+</method>
+
+document literal wrapped
+<method name="mul">
+	<input1>10</input1>
+	<input2>20</input2>
+</method>
+
+public class math{
+	// use document wrapped
+	public int add(int a, int b)
+		asdadsad
+	public int mul(int a, int b)
+		asdadsad
 	
-	
+}
+
 1) simple program
 2) write @webservice on top of the program
 3) input/output  - complex data as in arraylist, student ( style =Document)
@@ -790,99 +813,77 @@ Browser - Http Client : Used for testing HTML/Rest - Get webservice.
 RestTemplate - Http Client : Java http client program that can consume Rest webservice (get and post)
 
 Rest Webservice :
-
-	Input to this webservice can be
-		Http GET : 
-			Path param : http://ip:port/servicename/10/20
-			Request param : http://ip:port/servicename?input1=10&input2=20
+REST PUBLISH
+	http://localhost/addCal/12/10
+	http://localhost/subCal?param1=70&param2=20
+	http://localhost/jsonReqMul
+	input:{
+			"param1":10,
+			"param2":20
+		}
+	http://localhost/jsonRes/1/2
+	output:{
+			"sum":3,
+			"sub":-1,
+			"mul":2,
+			"div":0
+		}
+REST CONSUME
+***********	http://localhost/addCal/12/10***********
+		is webservice get/post ? GET (input is url)
+		what is the output of webservice ? integer
 		
-		Http POST : 
-			JSON input :
-	Output from this webservice can be
-		JSON, text, xml etc
+		RestTemplate rt=new RestTemplate ();
+		//output_data type result=rt.getForObject( URL , expected output class);
+		int result=	rt.getForObject( "http://localhost/addCal/12/10", Integer.class);
 		
-http://localhost/sub?input1=25&input2=50
-GET
-
-
-http://localhost/updateFBAddress/asdad/asdwqewe/wrrt/reteter
-http://localhost/updateFBAddress?street=asdad&city=asdwqewe&state=wrrt&country=reteter
-
-
-Rest webservice with JSON as the input
-1) POST : input is not in url.. it is complex json input.
-2) input format : JSON
-
-http://localhost/mul
-sent below json inside http body
-{
-	"param1":50,
-	"param2":10
-}
-
-JSONMapper program = jackson library
-Input in=new Input();
-in.param1=50;
-in.param2=10;
-
-public class Input{
-	int param1;
-	int param2;
-	String name;
-	// get set methods
-}
-
-
-
-
-
-
-HOW DO YOU WRITE REST WEBSERVICE THAT CAN RECEIVE INPUT AS JSON STRING
-
-1) provide a url service name for the method = @RequestMapping(value = "/jsonReqMul"
-2) Create Rest webmethod with post (method = RequestMethod.POST)
-3) declare that it consumes JSON ( consumes = MediaType.APPLICATION_JSON_VALUE)
-4) input to this method will be received in body (@RequestBody  in the parameter)
-5) Create Java program that is JSON input compliant ( parameter to your method)
-	{
-		"a":10,
-		"b":20
-	}
-
-	public class abcd{
-		int a;
-		int b;
-		// get set methods for above variables
+***********	http://localhost/subCal?param1=70&param2=20 ***********
+		is webservice get/post ? GET (input is url)
+		what is the output of webservice ? integer
+		
+		RestTemplate rt=new RestTemplate ();
+		int result=	rt.getForObject( "http://localhost/subCal?param1=70&param2=20", Integer.class);
+		
+***********	http://localhost/jsonReqMul***********
+	input:{
+			"param1":10,
+			"param2":20
+		}	
+		
+		is webservice get/post ? POST (input is not in url)
+			if post... what is the input ? JSON
+			if json... create java program compliant of json string
+				public class Input{
+					int param1; int param2; get/set methods
+				}
+		what is the output of webservice ? integer
+		
+		RestTemplate rt=new RestTemplate ();
+		Input in=new Input();
+		in.param1=150;
+		in.param2=20;
+		//output_date type result=rt.postForObject( URL, json_compliant_java_object, expected_output_class);
+		int result=	rt.postForObject( "http://localhost/jsonReqMul", in , Integer.class);
+		
+***********	http://localhost/jsonRes/1/2***********
+	output:{
+			"sum":3,
+			"sub":-1,
+			"mul":2,
+			"div":0
+		}
 	
-	}
-
-HOW DO YOU WRITE REST WEBSERVICE THAT CAN RETURN OUTPUT AS JSON STRING
-
-1) provide a url service name for the method = @RequestMapping(value = "/jsonReqMul"
-2) Use any suitable input (get or post)
-3) declare that it return JSON ( produce = MediaType.APPLICATION_JSON_VALUE)
-4) Create Java program that is JSON Ouput compliant ( parameter to your method)
-	{
-		"a":10,
-		"b":20
-	}
-
-	public class abcd{
-		int a;
-		int b;
-		// get set methods for above variables
-	
-	}
-	
-	
-JSON Mapper programs - Convert JSON string into java object
-					Convert Java object into JSON string
-					
-					
-					
-MICROSERVICES : REST + JSON
-
-
+			is webservice get/post ? GET (input is in url)
+			what is the output of webservice ? json
+				if output is json... create json compliant java program
+					public class Output{
+						int sum;int sub, int mul; int div get/set method
+					}
+				
+			RestTemplate rt=new RestTemplate ();
+			Output result=	rt.getForObject( "http://localhost/jsonRes/1/2", Output.class);
+		
+		
 ******************** SWAGGER *****************************
 
 Rest webservice documentation library
