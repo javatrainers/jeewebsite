@@ -935,7 +935,35 @@ Servlet responsibilities :
 			forward "req dispatcher fwd",
 		text "res.getWriter", 
 		binary "res.getoutputstream"
+MVC architecture
 
+Model	: Business logic
+View		: webpage html/jsp
+Controller	: Deals with URL handling and request/response processing
+
+
+Servlet responsibilities :
+	1) URL mapping : @Webservlet
+	2) Request processing : request.getParameter
+	3) business logic handling 
+	4) Response generation : 
+		webpage
+			redirect "res.sendRedirect", 
+			forward "req dispatcher fwd",
+		text "res.getWriter", 
+		binary "res.getoutputstream"
+
+Strut Framework
+	1) URL mapping Struts.xml 
+	2) Request processing : Struts framework
+	3) business logic handling Strut business program (Action)
+	4) Response generation : struts.xml
+		webpage
+			redirect "res.sendRedirect", 
+			forward "req dispatcher fwd" (DEFAULT)
+		text "res.getWriter", 
+		binary "res.getoutputstream"
+		json
 
 Servlet to strut upgrade:
 	1) URL mapping : in struts.xml create action element
@@ -1057,6 +1085,17 @@ JSP code
 	</s:iterator>
 	
 ************************ spring **********
+Spring boot : project setup. development, build, deploy,dependancy
+	embedded web server(tomcat)
+Spring framework : website architecutre design includes java program
+
+ComponentScan
+	Find all the programs that have following annotation
+	@Component,@Controller,@RestCtronoller,@Service,@Repository
+	@Configuration,@Aspects
+	mention the package name of these programs
+	
+	
 
 Frameworks : 
 	architecutre
@@ -1071,80 +1110,66 @@ small/medium/enterprise
 *******Dependency Injection and Aspect Oriented Programming******
 
 
-
-
-public class Car{
-	// loose coupled
-	// tightly coupled
-	// spring framework will initialize this oject.. DEPENDANCY INJECTION
-	Engine engine;
+Framework : proven solution for similar problem
 	
-	public void drive(){
-		engine.on();
-	}
-}
+*********IOC/DI : Inversion Of Control / Dependancy Injection*********
+		public class Car{
+			// IOC / DI : Spring framework will initialize the global variable
+			Engine e; // global variables
+		}
 
-Engine > economyEngine > superTurboEngine
-Engine engine=new Engine();
-Engine engine=new economyEngine ();
-Engine engine=new superTurboEngine();
+		Car HAS-A Engine
+		Car is DEPENDED on Engine
 
-Car is depended on Engine
-Dependancy are global variable in the program
-HAS-A attributes - dependancy
-
-Dependancy injection ? 
-	creating/initializing object of global variables
-	additional features (additional codes) to your class
-		JDBC code
-		webservices code
-		
-		
-		
-		
-		
-		
-		
-ASPECTS
-
-Aspects : cross cutting concern. These are additional lines of code (security,logging, exce,perf,validation) required by your company 
-that are NOT DIRECTLY related to the logic
-Core business logic
-public void login(String userid, String password){
+		Initializing object requires compaitble Concrete/complete program on RHS
+			public interface ICar{
+				public void drive();
+			}
+			public class Nissan implements ICar{
+				public void drive(){
+					code for driving
+				}
+			}
+			ICar ic=new Nissan();
+		Initializing rquire constructor param
+			ICar ic=new Nissan("adsad",234,12);
+		Managing life cycle Object
+			request info is short lived only until req-res chain
+			session info - store info for longer period (cart info)
+			
 	
-//1) logging	
-	// print userid in console, so if this customer has any issue. you can check the print statement in your console.
-// 2) security
-	// block certain users
-// 3) exception handling
-// 4) performance check - 3 second tolerance
-// 5) validation
-	if(userid=="jane" && password=="jane1!")
-		sysout("succesfull login");
-	else
-		sysout("login failed");
-}
-
-
-public void login(String userid, String password){
-	if(userid=="jane" && password=="jane1!")
-		sysout("succesfull login");
-	else
-		sysout("login failed");
-}
-
-
-public void register(String userid, String password){
-		/// REGISTERING CUSTOMER CODE
+*********AOP : Aspect Oriented Programming*********
+			
+website development requires lot of additional code , that does not contribute to the actual logic
+			but required to successfully/safely/securely run a website
+These additional code is called CROSS CUTTING CONCERNS ( ASPECTS )
 		
-}
+AOP - separate additional cross cutting concern code from actual busienss logic code. this additional code
+can be reused in other programs as well
+			
+		public boolean login(String userid, String password){
+			// security
+			if(userid==mike)
+				return false;
+			// logging = recording customer activity on the website
+			sysout(" uerid john is trying to login");
+			// performance = 8:40:30
+			long starttime=System.currenttimeinms();
+			// exception handling
+			try{
+				if(userid==john && password=j=john123)
+					return true;
+				else
+					return false;
+			}catch(Exception e){
+				sysout("please try agin later. sorry for the inconvinience");
+			}
+			// 8:40:45 = total time taken for login code is 15 seconds
+			long stoptime=System.currenttimeinms();
+			
+		}	
 
-public void payment(String userid, String password){
-		/// REGISTERING CUSTOMER CODE
-		
-}
-xml = configuration
-annotation = configuration
+CONFIGURATION
 
 1) configure spring dependancy in pom.xml
 2) in main program include springbootapplication and component scan annotation
@@ -1176,7 +1201,7 @@ Spring annotation
 	
 	Engine e=new Engine();
 	
-	Scope
+	Scope = lifecycle of the object
 		Singelton : 1 object of this program is created.. this will be shared by entire
 				company customer
 		Session : 1 Object per customer login session
@@ -1197,7 +1222,26 @@ child Toyota
 
 @Autowired = spring framework create object
 ICar ic;
+@Component,@Controller,@RestCtronoller,@Service,@Repository
+@Configuration,@Aspects
 
+@Service
+public class Engine{
+	ssfsdfsf code asdada 
+}	
+
+public class Wheel{
+	ssfsdfsf code asdada 
+}	
+
+public class Car{
+	Engine e=new Engine(); // WRONG
+	
+	@Autowired // Engine is special spring program (@Service) and is managed and initialized by spring framework
+	Engine e;
+	
+	Wheel w=new Wheel();
+}
 
 
 ******* spring aspects **********
@@ -1206,88 +1250,82 @@ Spring aspects : cross cutting concerns.. additional
 	required for managing, debugging,running
 	a website successfully.
 	
-	package com.amazon.pqr;
-	public class ProfileUser{
-		10 methods
+@Aspect
+public class ExtraCode{
+	// advice - when to apply extra code
+	//AfterThrowing :  extra aspect code is applied if an EXCEPTION occurs in target method
+	@Around( execution ( * com.amazon.homePage.Login.*(String,String) )
+	public void commonCode(){
+		sysout("1");
+		sysout("11");
+		joinPoint.proceed(); // continue with targeted method
+		sysout("5");
+		sysout("55");
 	}
-	package com.amazon.pqr;
-	public class Shopping{
-		20 methods
+}
+package com.amazon.homePage;
+public class Login{
+	public boolean verifyCredentials(String userid,String pwd){
+		sysout("2");
+		return true;
 	}
-	package com.amazon.abcd;
-	public class OrderUser{
-		5 methods
+	public boolean registera(String userid,String pwd,String email){
+		sysout("3");
+		return true;
 	}
-	package com.amazon.abcd;
-	public class Review{
-		25 methods
+	public boolean changePassword(String userid,String pwd){
+		sysout("4");
+		return true;
 	}
-	
-	
-	
-	
-	package com.amazon.pqr;
-	public class Profile{
-		public void login(String userid, String password){	
-			ssadasdsadasda
-		}
-		public int register(String userid, String password){	
-			ssadasdsadasda
-		}
-		public void unsubscribe(String userid){
-			asdsadad
-		}
-		public String changePass(String uid,String pwd){
-			sdsdsfsd
-		}
-	}
-	package com.amazon.abcd;
-	public class Shopping{
-		public void add2Cart(String prodName,int quantity){	
-			ssadasdsadasda
-		}
-		public void removeFromCart(String prodName){	
-			ssadasdsadasda
-		}
-		public void checkout(){
-			asdsadad
-		}
-	}
-	
-	
-	public class Strut{
-		@autowired
-		Shopping s;
-		public void method(){
-			sysout("in strut");
-			s.add2Cart("iphone");
-		}
-	}
-	@Aspect
-	public class ShoppingAspect{
-		@Around("within (com.amazon..*)")
-		public void abcd( ProceedingJoinPoint pj){
-			sysout("hi entering");
-				pj.proceed();
-			sysout("bye bye leaving");
-		}
-	}
-	package com.amazon.abcd;
-	@Service 
-	public class Shopping{
-		public int add2Cart(String prodName){	
-			sysout("in shopping spring");
-			int i=10/0; // exception thrown
-			return i;
-		}
-	}	
-	STRUT >>>      ShoppingAspect  >>> Shopping
-	in strut
-	hi entering
-	in shopping spring
-	bye bye leaving
-	
+}
+Login l=new Login();
+l.verifycredentials("john","john123"); >>>>>>>> print 2, 
 
+
+
+Before : extra aspect code is applied before targeted method
+After : extra aspect code is applied after targeted method
+AfterReturning : extra aspect code is applied after returning SUCCESSFULLY
+AfterThrowing :  extra aspect code is applied if an EXCEPTION occurs in target method
+Around : extra aspect code is applied Before and After the target method
+
+@Aspect
+public class ExtraCode{
+	// advice - when to apply extra code
+	//AfterThrowing :  extra aspect code is applied if an EXCEPTION occurs in target method
+	@Around( execution ( * com.amazon.homePage.Login.*(String,String) )
+	public void commonCode(){
+			// security
+			if(userid==mike)
+				return false;
+			// logging = recording customer activity on the website
+			sysout(" uerid john is trying to login");
+			// performance = 8:40:30
+			long starttime=System.currenttimeinms();
+			// exception handling
+			try{
+				joinPoint.proceed(); // continue with targeted method
+		
+			}catch(Exception e){
+				sysout("please try agin later. sorry for the inconvinience");
+			}
+			// 8:40:45 = total time taken for login code is 15 seconds
+			long stoptime=System.currenttimeinms();			
+	}
+}
+		public boolean login(String userid, String password){
+				LOGIN RELATED CODE
+		}	
+		
+		public boolean register(String userid, String password){
+				REGISTER RELATED CODE
+		}	
+		public boolean changePassword(String userid, String password){
+				CHANGE PASSWORD RELATED CODE
+		}	
+		public boolean updateEmail(String userid,String newEmail){
+				UPDATE EMAIL RELATED CODE
+		}
 
 
 ********* Spring data *************
