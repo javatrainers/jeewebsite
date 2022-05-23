@@ -1329,7 +1329,10 @@ public class ExtraCode{
 
 
 ********* Spring data *************
-
+Configuration
+1) include spring data dependancy in pom.xml
+2) configure datasource in application.properites
+3) notify Main Application.java program about the entity and repository program location
 
 Database : 
 	stores information : ENTITY represents the information/record
@@ -1401,5 +1404,71 @@ public void setRepo(prodRepo t){
 Prd p1=new Prd();
 p1.prod="Iphone"; p1.quantity=100;
 repo.delete(p1);
+
+
+***************** testing - junit ****************
+
+Unit testing = testing individual layer in the project
+System/End to end testing = Front end >>> backend
+Integration testing = If your websiite/software communicates
+	with other company software ... integration testing is required
+
+
+
+public boolean fbLogin(String email,String password){
+	
+	
+}
+
+Test scenarios
+	No Email No Pwd = confirm/assert outcome false
+	Email entered but No pwd = confirm/assert outcome false
+	No email but pwd entered = confirm outcome false
+	Correct Userid but wrong password = confirm outcome false
+	Wrong userid but correct password = confirm  outcome false
+	Correct userid and Correct password = confirm outcome true 
+
+assert = compare expected v/s actual 
+assert success = I am expecting false outcome and method fbLogin gave me false
+assert failure =  I am expecting false outcome and method fbLogin gave me true
+
+1 sceanrio - test case
+group of scenario = test suite
+
+public class Calculator {
+	public int add(int a, int b){
+		int sum=a+b;
+		return sum;
+	}
+}
+
+
+public class TestCalcualtor{
+	// method to test 1 scenario.. test case method
+	@Test
+	public void testAdd(){
+		Calculator cal=new Calculator();
+		int result=cal.add(5,5);
+		// assert / confirm... expected result 10 v/s actual result in variable
+		assertEquals("5 + 5 is always 10", 10 , result);
+		// message to display if assert fails, expeccted outcome , actual result
+	}
+	
+}
+
+
+Request URL: http://localhost/register
+/register  url trigger= getActionProxy("/register"); 
+/register = strut program ProfileAction and method register()
+userid : java = request.addParameter(simulate browser data)
+pwd : java123
+
+Junit = controller/service/repository/simple java testing
+postman = servlet and rest webservice testing
+soap ui = soap webservice and load testing 
+browser = webpage testing
+
+
+
 
 
