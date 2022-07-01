@@ -1,3 +1,29 @@
+function checkUserid(){
+	console.log("inside check userid function");
+	var useridInput=document.getElementById("userid").value;
+	if(useridInput=="")
+	{
+		alert("Userid is mandatory");
+		document.getElementById("userid").style="background:red";	
+	}
+	else if(useridInput=="john" || useridInput=="jane" )
+	{
+		alert("Userid already taken");
+		document.getElementById("userid").style="background:red";
+	}
+	else if(useridInput.length < 6 )
+	{
+		alert("Userid must be atleast 6 characters long");
+		document.getElementById("userid").style="background:red";
+	}
+	else{
+		document.getElementById("userid").style="background:white";
+	}	
+	
+	
+}
+
+
 function add( a , b ){
 	if(a == 0)
 		return false;
