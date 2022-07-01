@@ -1,3 +1,108 @@
+function add( a , b ){
+	if(a == 0)
+		return false;
+	
+	var sum=a+b;
+	return sum;
+}
+
+test();
+function   test( ){
+	var result=add(10,20);
+	console.log(" sum result is :"+result);
+	// basic primitive data type
+	var v="john";
+	v=true;
+	
+	var b=true;
+	var c='x';
+	var d= 10;
+	var e=10.0;
+	
+	// arrays	
+	var f=["john","jane","mike","andy","ron"];
+	console.log(	f[3] );
+	// System.out.print
+	console.log("welcome to javascript");
+	// object data type
+	// no semicolon...
+	// use comma to separate multiple variable and functions
+	var student={
+		name : "john"
+		,
+		age : 10
+		,
+		grade : 2
+		,
+		learn : function(  ){
+			console.log("attending class");
+		}
+		,
+		teach : function(  ){
+			console.log("teaching class");
+		}
+		
+	};
+	
+	student.name;
+	student.learn();
+	//alert("hi how are you");
+	return 1;
+	
+}
+controlFlow();
+function controlFlow(){
+	console.log("inside control flow");
+	try{
+		var z=10/2;
+		
+	}catch(err){
+		console.log("error occured");
+	}
+	finally{
+		console.log("done with try catch finally");
+	}
+	
+	
+	var a=10;
+	var b=20;
+	var c=20;
+	var d=20;
+	// false  or   true = true
+	if(a==b   ||   c==d )
+		console.log(" they are same");
+	else
+		console.log(" they are different");
+	
+	for ( var x=0 ; x < 5 ; x ++){
+		console.log("hi");
+	}
+	
+	while(false){
+		console.log("hi")
+	}
+	
+	do{
+		console.log("hi")
+	}while(false);
+	
+	var y=2;
+	switch(y){
+		case 1:
+			console.log("hi");
+			break;
+		case 2:
+			console.log("bye");
+			break;
+	}
+}
+
+
+
+
+
+
+
 function checkUser(){
 	//var userTypedValue=	document.getElementById('user').value;
 	
@@ -27,35 +132,3 @@ $(document).ready(function() {
 //	$("#user").blur(checkUser);
 });
 
-test();
-function   test( ){
-	
-	// basic primitive data type
-	var v="john";
-	v=true;
-	
-	var b=true;
-	var c='x';
-	var d= 10;
-	var e=10.0;
-		
-	var f=[1,4,5,6];
-	console.log(f [3] );
-	// System.out.print
-	console.log("welcome to javascript");
-	// object data type
-	var student={
-		name : "john",
-		age : 10,
-		grade : 2,
-		learn : function(  ){
-			console.log("attending class");
-		}
-	};
-	
-	student.name;
-	student.learn();
-	//alert("hi how are you");
-	return 1;
-	
-}

@@ -3,13 +3,16 @@
 		width:100%;
 		background:yellow;
 }
-#header{
-	height:10%;
-	width:100%;
-	background : #5E5294;
+.header{
+	height:14%;
+	width:99%;
+	border-style:dashed;
+}
+.header2{
+	background : lightblue;
 }
 #body{
-	height:85%;
+	height:80%;
 	width:100%;
 	background:#CCCAD6;
 }
@@ -17,15 +20,41 @@
 	height:5%;
 	width:100%;
 	background:#372D61;
+	color:white;
+	font-size:25;
+	font-family:arial;
+	text-align:center;
+}
+#footer:active{
+		color:yellow;
 }
 #filter{
 	height:100%;
 	width:10%;
 	float:left;
 }
+#product:hover{
+		background:green;
+}
 #productDisplay{
 	height:100%;
 	width:90%;
 	background:white;
 	float:left;
+}
+#product{
+	
+	transform :translate(50px, 100px);  
+	/*
+	transform:rotate(45deg); 
+	*/
+	border-radius:5px;
+	height:20%;
+	width:20%;
+	background:red;
+	float:left;
+	margin:5px;
+	padding-left:20px;
+	padding-top:20px;
+	display:block;
 }
