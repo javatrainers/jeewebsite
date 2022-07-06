@@ -1,10 +1,17 @@
+
 function checkUserid(){
 	console.log("inside check userid function");
-	var useridInput=document.getElementById("userid").value;
+	// READ what customer typed in userid text box
+	//var useridInput=document.getElementById("userid").value();
+	var useridInput=$("#userid").val(); // jquery
+	
 	if(useridInput=="")
 	{
-		alert("Userid is mandatory");
+		// customr didnt type userid
+		// WRITE message for customer on userid text box
+		//$("#userid").val("please enter userid"); 
 		document.getElementById("userid").style="background:red";	
+		$("#userid").css("background","red");
 	}
 	else if(useridInput=="john" || useridInput=="jane" )
 	{
@@ -124,14 +131,28 @@ function controlFlow(){
 }
 
 
+function checkUser() {
+	var ajaxJavascriptObject={
+        url: '/checkUser',
+        type: 'post',
+        data: 'userid='+$("#uid").val(),
+        context: this,
+        success: function (data) {
+               if(data=="unavailable")
+		       alert("userid already taken");
+        },
+        error: function (data) {
+                  console.log("failure");
+        }
+    };
+    $.ajax(ajaxJavascriptObject);
+}
 
 
 
 
 
 function checkUser(){
-	//var userTypedValue=	document.getElementById('user').value;
-	
 	// val() = reading customer typed value in uid text box
 	var userTypedValue=	$('#user').val();
 	
@@ -154,7 +175,28 @@ function checkUser(){
 
 }
 
-$(document).ready(function() {
-//	$("#user").blur(checkUser);
-});
+// change background color of userid text box to yellow
+// when someone clicks on userid text box
 
+//event listeners are tracked in ready function
+$(document).ready(function() {
+	$("#userid").click( changeColor );
+	$("#userid").blur( isUseridTyped );
+	//$("#userid").keypress( useridTyping );
+	//$("#password").click(checkUserid);
+});
+function isUseridTyped (){
+	var cusTyped=$("#userid").val();
+	if(cusTyped == "")
+		$("#reg").slideUp(5000); // 5000 milli seconds = 5 seconds
+	else
+		$("#reg").slideDown(5000);
+	
+}
+function useridTyping(){
+	var cusTyped=$("#userid").val();
+	console.log(cusTyped);
+}
+function changeColor(){
+	$("#userid").css("background","green");
+}
