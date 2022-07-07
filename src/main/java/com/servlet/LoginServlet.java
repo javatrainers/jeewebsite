@@ -20,26 +20,26 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 public class LoginServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
-		String uid = req.getParameter("user");
-		String pwd = req.getParameter("pass");
-		try {
-			Connection conn=DatabaseConnection .getDBConnection();
-			boolean result=UsersTable.validateLogin(uid, pwd, conn);
-			if(uid.equals("john123") && pwd.equals("john123!"))
-			{
-				// binary = bytes
-				byte [] binaryRes="Login success".getBytes();
-				res.getOutputStream().write(  binaryRes );
-			}
-			else
-				// text response
-				res.getWriter().write("Login failed");
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		
+		
+		String uid = req.getParameter("userid");
+		String pwd = req.getParameter("password");
+		
+		String[]  name=new String[3];// 0, 1, 2
+		System.out.println( name[5] );
+		
+		
+		if(uid.equals("java") && pwd.equals("jee"))
+			res.sendRedirect("success.html");
+		else
+			res.sendRedirect("failure.html");
 	}
 	public void doGet(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
-		String uid = req.getParameter("user");
+		doPost(req,res);
+	}
+	
+	/*
+	 String uid = req.getParameter("user");
 		String pwd = req.getParameter("pass");
 		try {
 			Connection conn=DatabaseConnection .getDBConnection();
@@ -60,11 +60,26 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-	}
+	 */
 	
-	
-	
-	
+	/*
+	 try {
+			Connection conn=DatabaseConnection .getDBConnection();
+			boolean result=UsersTable.validateLogin(uid, pwd, conn);
+			if(uid.equals("john123") && pwd.equals("john123!"))
+			{
+				// binary = bytes
+				byte [] binaryRes="Login success".getBytes();
+				res.getOutputStream().write(  binaryRes );
+			}
+			else
+				// text response
+				res.getWriter().write("Login failed");
+		}catch(Exception e) {
+			e.printStackTrace();
+		} 
+	 
+	 */
 	
 	
 	

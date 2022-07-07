@@ -8,13 +8,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.servlet")
 @ServletComponentScan(basePackages= {"com.servlet"})
-public class ShopApplication    extends SpringBootServletInitializer {
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(ShopApplication.class);
-	}
+public class ShopApplication   {
 	public static void main(String[] args) {
 		System.out.println("hello");
 		SpringApplication.run(ShopApplication.class, args);

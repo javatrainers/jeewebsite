@@ -180,8 +180,8 @@ function checkUser(){
 
 //event listeners are tracked in ready function
 $(document).ready(function() {
-	$("#userid").click( changeColor );
-	$("#userid").blur( isUseridTyped );
+//	$("#userid").click( changeColor );
+//	$("#userid").blur( isUseridTyped );
 	//$("#userid").keypress( useridTyping );
 	//$("#password").click(checkUserid);
 });
