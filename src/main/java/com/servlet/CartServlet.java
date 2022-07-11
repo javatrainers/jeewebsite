@@ -21,11 +21,13 @@ public class CartServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String prod = req.getParameter("productName");
 		HttpSession session=req.getSession();
+		session.invalidate();
 		if (session.getAttribute("cart") == null) {
 			ArrayList<String> cartList = new ArrayList<String>();
 			session.setAttribute("cart", cartList );
 		}
-		ArrayList<String> cartList =(ArrayList<String>)session.getAttribute("cart");
+		ArrayList<String> cartList
+		=(ArrayList<String>)session.getAttribute("cart");
 		
 		cartList.add(prod);
 		res.getWriter().write(cartList.toString());

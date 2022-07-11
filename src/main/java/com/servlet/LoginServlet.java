@@ -25,14 +25,27 @@ public class LoginServlet extends HttpServlet {
 		String uid = req.getParameter("userid");
 		String pwd = req.getParameter("password");
 		
-		String[]  name=new String[3];// 0, 1, 2
-		System.out.println( name[5] );
-		
-		
 		if(uid.equals("java") && pwd.equals("jee"))
-			res.sendRedirect("success.html");
+		{
+			// sending text response back to customer
+			res.getWriter().write("success login");
+			res.getWriter().flush();
+			res.getWriter().close();
+		}
+		else {
+			byte[] binaryData="failed".getBytes();
+			// sending binary response back to customer
+			res.getOutputStream().write(binaryData);
+			res.getOutputStream().flush();
+			res.getOutputStream().close();
+		}
+		
+		/*
+		if(uid.equals("java") && pwd.equals("jee"))
+			req.getRequestDispatcher("success.jsp").forward(req, res);
 		else
-			res.sendRedirect("failure.html");
+			res.sendRedirect("https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Fwww.google.com%2F&hl=en&dsh=S1023505524%3A1657318410036841&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp");
+			*/
 	}
 	public void doGet(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
 		doPost(req,res);
