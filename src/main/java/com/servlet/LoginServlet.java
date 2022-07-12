@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -19,12 +20,39 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
-		
-		
+	
+			
+		HttpSession session=req.getSession();
 		String uid = req.getParameter("userid");
 		String pwd = req.getParameter("password");
+		ArrayList<String> fav=new ArrayList<String> (); 
+		if(uid.equals("john") && pwd.equals("john1!"))
+		{
+			fav.add("From : sony@a.com subject ; hi"); 
+			fav.add("From : tony@a.com subject ; are u coming to trip ?"); 
+			fav.add("From : mon@a.com subject ; bye "); 
+			req.setAttribute("firstName", "johnathan");
+			req.setAttribute("lastName", "doe");
+			req.setAttribute("favor",fav);
+			req.getRequestDispatcher("success.jsp").forward(req, res);
+		}
+		else if (uid.equals("jane") && pwd.equals("jane1!"))
+		{
+			fav.add("From : ron@a.com subject ; hello"); 
+			fav.add("From : mike@a.com subject ; are u coming to office ?"); 
+			fav.add("From : andy@a.com subject ; see ya");req.setAttribute("firstName", "janice");
+			req.setAttribute("lastName", "joe");
+			req.setAttribute("favor",fav);
+			req.getRequestDispatcher("success.jsp").forward(req, res);
+			
+		}
+		else
+			res.sendRedirect("https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Fwww.google.com%2F&hl=en&dsh=S1023505524%3A1657318410036841&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp");
 		
+		
+		/*
 		if(uid.equals("java") && pwd.equals("jee"))
 		{
 			// sending text response back to customer
@@ -39,13 +67,9 @@ public class LoginServlet extends HttpServlet {
 			res.getOutputStream().flush();
 			res.getOutputStream().close();
 		}
+		*/
 		
-		/*
-		if(uid.equals("java") && pwd.equals("jee"))
-			req.getRequestDispatcher("success.jsp").forward(req, res);
-		else
-			res.sendRedirect("https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Fwww.google.com%2F&hl=en&dsh=S1023505524%3A1657318410036841&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp");
-			*/
+		
 	}
 	public void doGet(HttpServletRequest req, HttpServletResponse res)throws IOException, ServletException {
 		doPost(req,res);
