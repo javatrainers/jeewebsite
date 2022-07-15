@@ -130,23 +130,25 @@ function controlFlow(){
 	}
 }
 
-
-function checkUser() {
+function checkUserAjaxCall() {
+	
+	let age=10;
 	var ajaxJavascriptObject={
-        url: '/checkUser',
-        type: 'post',
-        data: 'userid='+$("#uid").val(),
-        context: this,
-        success: function (data) {
-               if(data=="unavailable")
-		       alert("userid already taken");
-        },
-        error: function (data) {
-                  console.log("failure");
-        }
-    };
+			url: '/checkUser',
+			type: 'post',
+			data: 'userid='+$("#reguserid").val(),
+			context: this,
+			success: function (serverResponse) {
+			       if(serverResponse=="unavailable")
+				       alert("userid already taken");
+			},
+			error: function (data) {
+				  console.log("failure");
+			}
+	};
     $.ajax(ajaxJavascriptObject);
 }
+
 
 
 
@@ -180,6 +182,7 @@ function checkUser(){
 
 //event listeners are tracked in ready function
 $(document).ready(function() {
+	$("#regpassword").click( checkUserAjaxCall );
 //	$("#userid").click( changeColor );
 //	$("#userid").blur( isUseridTyped );
 	//$("#userid").keypress( useridTyping );
